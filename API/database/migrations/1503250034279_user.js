@@ -6,6 +6,7 @@ class UserSchema extends Schema {
   up () {
     this.create('users', table => {
       table.increments()
+      table.boolean('admin').defaultTo(false)
       table
         .string('name', 80)
         .notNullable()
