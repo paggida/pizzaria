@@ -1,15 +1,16 @@
 'use strict'
 const Antl = use('Antl')
 
-class User {
+class TypeC {
   get validateAll () {
     return true
   }
   get rules () {
     return {
-      name: 'required|string',
-      email: 'required|email|unique:users',
-      password: 'required|confirmed'
+      product_id: 'required|integer',
+      description: 'required|string',
+      baseValue: 'required|number',
+      file_id: 'required|integer'
     }
   }
   get messages () {
@@ -17,4 +18,4 @@ class User {
   }
 }
 
-module.exports = User
+module.exports = TypeC

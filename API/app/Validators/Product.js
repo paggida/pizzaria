@@ -1,15 +1,14 @@
 'use strict'
 const Antl = use('Antl')
 
-class User {
+class Product {
   get validateAll () {
     return true
   }
   get rules () {
     return {
-      name: 'required|string',
-      email: 'required|email|unique:users',
-      password: 'required|confirmed'
+      name: 'required|string|alpha',
+      file_id: 'required|integer'
     }
   }
   get messages () {
@@ -17,4 +16,4 @@ class User {
   }
 }
 
-module.exports = User
+module.exports = Product
