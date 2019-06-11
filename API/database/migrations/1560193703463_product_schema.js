@@ -7,6 +7,11 @@ class ProductSchema extends Schema {
     this.create('products', table => {
       table.increments()
       table.string('name', 80).notNullable()
+      table.string('description', 120).notNullable()
+      table
+        .integer('preparation')
+        .unsigned()
+        .notNullable()
       table
         .integer('file_id')
         .unsigned()

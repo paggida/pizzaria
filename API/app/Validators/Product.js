@@ -7,7 +7,9 @@ class Product {
   }
   get rules () {
     return {
-      name: 'required|string|alpha',
+      name: 'required|string',
+      description: 'required|string',
+      preparation: 'required|integer',
       file_id: 'required|integer'
     }
   }
