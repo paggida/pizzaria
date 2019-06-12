@@ -7,6 +7,7 @@ Route.post('sessions', 'SessionController.store').validator('Session')
 Route.get('files/:name', 'FileController.show')
 
 Route.group(() => {
+  Route.get('users', 'UserController.show')
   Route.post('files', 'FileController.store')
   Route.resource('products', 'ProductController')
     .validator(
@@ -29,6 +30,14 @@ Route.group(() => {
       new Map([
         [['products.types.sizes.update'], ['SizeU']],
         [['products.types.sizes.store'], ['SizeC']]
+      ])
+    )
+    .apiOnly()
+  Route.resource('purchases', 'PurchaseController')
+    .validator(
+      new Map([
+        [['purchases.update'], ['Purchase']],
+        [['purchases.store'], ['Purchase']]
       ])
     )
     .apiOnly()
