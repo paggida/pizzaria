@@ -7,7 +7,6 @@ class TypeC {
   }
   get rules () {
     return {
-      product_id: 'required|integer',
       description: 'required|string',
       baseValue: 'required|number',
       file_id: 'required|integer'

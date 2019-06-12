@@ -16,14 +16,20 @@ Route.group(() => {
       ])
     )
     .apiOnly()
-  Route.resource('types', 'TypeController')
+  Route.resource('products.types', 'TypeController')
     .validator(
-      new Map([[['types.update'], ['TypeU']], [['types.store'], ['TypeC']]])
+      new Map([
+        [['products.types.update'], ['TypeU']],
+        [['products.types.store'], ['TypeC']]
+      ])
     )
     .apiOnly()
-  Route.resource('sizes', 'SizeController')
+  Route.resource('products.types.sizes', 'SizeController')
     .validator(
-      new Map([[['sizes.update'], ['SizeU']], [['sizes.store'], ['SizeC']]])
+      new Map([
+        [['products.types.sizes.update'], ['SizeU']],
+        [['products.types.sizes.store'], ['SizeC']]
+      ])
     )
     .apiOnly()
 }).middleware(['auth'])

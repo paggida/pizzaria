@@ -7,7 +7,6 @@ class SizeU {
   }
   get rules () {
     return {
-      type_id: 'integer',
       description: 'string',
       baseIndex: 'number',
       file_id: 'integer'

@@ -3,8 +3,8 @@
 const Model = use('Model')
 
 class Size extends Model {
-  type () {
-    return this.belongsTo('App/Models/Type')
+  product () {
+    return this.belongsTo('App/Models/Product')
   }
   file () {
     return this.belongsTo('App/Models/File')

@@ -7,10 +7,10 @@ class SizeSchema extends Schema {
     this.create('sizes', table => {
       table.increments()
       table
-        .integer('type_id')
+        .integer('product_id')
         .unsigned()
         .references('id')
-        .inTable('types')
+        .inTable('products')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
       table.string('description', 120).notNullable()

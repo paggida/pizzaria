@@ -8,7 +8,7 @@ class ProductController {
     return product
   }
   async store ({ request }) {
-    const data = request.only(['name', 'file_id'])
+    const data = request.only(['name', 'description', 'preparation', 'file_id'])
     const product = await Product.create(data)
     return product
   }
@@ -18,7 +18,7 @@ class ProductController {
     return product
   }
   async update ({ params, request }) {
-    const data = request.only(['name', 'file_id'])
+    const data = request.only(['name', 'description', 'preparation', 'file_id'])
     const product = await Product.findOrFail(params.id)
     product.merge(data)
     await product.save()

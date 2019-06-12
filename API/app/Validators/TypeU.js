@@ -7,7 +7,6 @@ class TypeU {
   }
   get rules () {
     return {
-      product_id: 'integer',
       description: 'string',
       baseValue: 'number',
       file_id: 'integer'

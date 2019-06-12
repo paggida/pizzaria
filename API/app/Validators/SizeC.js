@@ -7,7 +7,6 @@ class SizeC {
   }
   get rules () {
     return {
-      type_id: 'required|integer',
       description: 'required|string',
       baseIndex: 'required|number',
       file_id: 'required|integer'
