@@ -11,12 +11,8 @@ class SizeController {
     const type = await Type.findOrFail(params.types_id)
     // Valida se o Type da chamada corresponde aos tamanhos do produto
     if (type.product_id === parseInt(params.products_id)) {
-      // Cálculo de preço
       return size.rows.map(item => {
-        item.$attributes = {
-          ...item.$attributes,
-          price: item.baseIndex * type.baseValue
-        }
+        item.calculatePrice(type.baseValue)
         return item
       })
     } else {
@@ -31,14 +27,11 @@ class SizeController {
   async show ({ params }) {
     const size = await Size.findOrFail(params.id)
     const type = await Type.findOrFail(params.types_id)
+
     // Valida se o Type da chamada corresponde aos tamanhos do produto
     if (type.product_id === parseInt(params.products_id)) {
       await size.load('file')
-      // Cálculo de preço
-      size.$attributes = {
-        ...size.$attributes,
-        price: size.baseIndex * type.baseValue
-      }
+      size.calculatePrice(type.baseValue)
       return size
     } else {
       return []
