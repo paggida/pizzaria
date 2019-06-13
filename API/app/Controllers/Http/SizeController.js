@@ -9,7 +9,7 @@ class SizeController {
       .with('file')
       .fetch()
     const type = await Type.findOrFail(params.types_id)
-    // Valida se o Type da chamada corresponde aos tamanhos do produto
+    // Valida se o Type da chamada corresponde aos relacionados ao produto
     if (type.product_id === parseInt(params.products_id)) {
       return size.rows.map(item => {
         item.calculatePrice(type.baseValue)
@@ -28,7 +28,7 @@ class SizeController {
     const size = await Size.findOrFail(params.id)
     const type = await Type.findOrFail(params.types_id)
 
-    // Valida se o Type da chamada corresponde aos tamanhos do produto
+    // Valida se o Type da chamada corresponde aos relacionados ao produto
     if (type.product_id === parseInt(params.products_id)) {
       await size.load('file')
       size.calculatePrice(type.baseValue)
