@@ -3,6 +3,10 @@
 const Model = use('Model')
 
 class Purchase extends Model {
+  static boot () {
+    super.boot()
+    this.addTrait('Moment')
+  }
   static get computed () {
     return ['formatFullValue']
   }

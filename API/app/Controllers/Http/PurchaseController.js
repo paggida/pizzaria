@@ -8,7 +8,10 @@ class PurchaseController {
       .with('purchaseItem')
       .with('user')
       .fetch()
-    return purchase
+    return purchase.rows.map(item => {
+      item.fromNow()
+      return item
+    })
   }
   async store ({ request, auth }) {
     const data = request.only([
@@ -35,6 +38,7 @@ class PurchaseController {
     const purchase = await Purchase.findOrFail(params.id)
     await purchase.load('purchaseItem')
     await purchase.load('user')
+    purchase.fromNow()
     return purchase
   }
   async update ({ params, request }) {
