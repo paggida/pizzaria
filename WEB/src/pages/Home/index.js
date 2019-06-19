@@ -9,7 +9,6 @@ import { Creators as PurchaseActions } from '../../store/ducks/purchase';
 class Home extends Component {
   static propTypes = {
     requestLoadingPurchase: PropTypes.func.isRequired,
-    // loading: PropTypes.bool.isRequired,
     error: PropTypes.string,
     data: PropTypes.arrayOf(
       PropTypes.shape({
@@ -50,7 +49,6 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-  // loading: state.purchase.loading,
   error: state.purchase.error,
   data: state.purchase.data,
 });

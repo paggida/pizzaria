@@ -1,33 +1,17 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: row;
+  position: absolute;
+  align-items: center;
   justify-content: center;
-  margin-top: 50px;
-`;
-
-export const Repository = styled.div`
-  width: 250px;
-  background: #fff;
-  border-radius: 3px;
-  display: flex;
-  flex-direction: column;
-  margin: 0 10px;
-
-  header {
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    img {
-      width: 64px;
-    }
-  }
-
-  button {
-    font-weight: bold;
-    padding: 5px;
+  background: #c2c2a3;
+  #backgroundImg {
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
   }
 `;
