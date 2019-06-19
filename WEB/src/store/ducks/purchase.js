@@ -17,18 +17,17 @@ const INITIAL_STATE = {
   error: null,
 };
 export default function purchase(state = INITIAL_STATE, action) {
-  let data;
   switch (action.type) {
-    case (Types.REQUEST_LOAD_PURCHASE, Types.REQUEST_END_PURCHASE):
+    case Types.REQUEST_LOAD_PURCHASE:
+    case Types.REQUEST_END_PURCHASE:
       return { ...state, loading: true };
     case Types.LOADING_PURCHASE:
       return { ...state, loading: false, data: action.payload.data };
     case Types.ENDING_PURCHASE:
-      data = state.data.filter(item => item.id !== action.payload.id);
       return {
         ...state,
         loading: false,
-        data,
+        data: state.data.filter(item => item.id !== action.payload.id),
       };
     case Types.FAILURE_PURCHASE:
       return { ...state, loading: false, error: action.payload.error };
@@ -40,7 +39,9 @@ export default function purchase(state = INITIAL_STATE, action) {
  * Action creators
  */
 export const Creators = {
+  requestLoadingPurchase: () => ({ type: Types.REQUEST_LOAD_PURCHASE }),
+  requestEndingPurchase: () => ({ type: Types.REQUEST_END_PURCHASE }),
   loadingPurchase: data => ({ type: Types.LOADING_PURCHASE, payload: { data } }),
   endingPurchase: id => ({ type: Types.ENDING_PURCHASE, payload: { id } }),
-  failureRequestPurchase: error => ({ type: Types.FAILURE_PURCHASE, payload: { error } }),
+  failurePurchase: error => ({ type: Types.FAILURE_PURCHASE, payload: { error } }),
 };

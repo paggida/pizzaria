@@ -5,9 +5,9 @@ import { loadingPurchase, endingPurchase } from './purchase';
 import { signIn } from './sign';
 
 export default function* rootSaga() {
-  yield all(
-    [takeLatest(SignTypes.REQUEST_SIGN_IN, signIn)],
-    [takeLatest(PurchaseTypes.REQUEST_LOAD_PURCHASE, loadingPurchase)],
-    [takeLatest(PurchaseTypes.REQUEST_END_PURCHASE, endingPurchase)],
-  );
+  yield all([
+    takeLatest(SignTypes.REQUEST_SIGN_IN, signIn),
+    takeLatest(PurchaseTypes.REQUEST_LOAD_PURCHASE, loadingPurchase),
+    takeLatest(PurchaseTypes.REQUEST_END_PURCHASE, endingPurchase),
+  ]);
 }

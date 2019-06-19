@@ -11,6 +11,7 @@ export function* signIn({ payload: { data } }) {
       headers: { Authorization: `bearer ${response.data.token}` },
     });
     if (admin) {
+      sessionStorage.setItem('tknPizza', response.data.token);
       yield put(SignActions.successSignIn(response.data.token));
     } else {
       yield put(SignActions.failureSignIn('Acesso não permitido!'));

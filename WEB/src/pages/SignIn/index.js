@@ -1,32 +1,27 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { Creators as SignActions } from '../../store/ducks/sign';
 // import { Container, Repository } from './styles';
 
 class SignIn extends Component {
   state = {
-    email: '',
-    password: '',
+    email: 'admin@gmail.com',
+    password: '123123',
   };
 
   static propTypes = {
-    requestSignIn: propTypes.func.isRequired,
-    loading: propTypes.bool.isRequired,
-    token: propTypes.string,
-  };
-
-  static defaultProps = {
-    token: null,
+    requestSignIn: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
   };
 
   render() {
     const { email, password } = this.state;
-    const { requestSignIn, loading, token } = this.props;
+    const { requestSignIn, loading } = this.props;
 
-    if (token) {
+    if (sessionStorage.getItem('tknPizza')) {
       return <Redirect to="/Home" />;
     }
 
@@ -62,7 +57,6 @@ class SignIn extends Component {
 }
 const mapStateToProps = state => ({
   loading: state.sign.loading,
-  token: state.sign.token,
 });
 const mapDispachToProps = dispatch => bindActionCreators(SignActions, dispatch);
 export default connect(
