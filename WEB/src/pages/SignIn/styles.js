@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Background from '../../assets/img/background.jpg';
 
 export const Container = styled.div`
   height: 100%;
@@ -7,11 +8,6 @@ export const Container = styled.div`
   position: absolute;
   align-items: center;
   justify-content: center;
-  background: #c2c2a3;
-  #backgroundImg {
-    position: absolute;
-    z-index: 1;
-    height: 100%;
-    width: 100%;
-  }
+  background: linear-gradient(to bottom, transparent 0%, #000 97%), url(${Background});
+  background-size: 100% 100%;
 `;

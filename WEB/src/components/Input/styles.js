@@ -15,4 +15,16 @@ export const Input = styled.input`
   margin-bottom: 10px;
   padding-left: 20px;
   padding-right: 20px;
+  ::-webkit-input-placeholder {
+    color: #999999;
+  }
+  ::-moz-placeholder {
+    color: #999999;
+  }
+  :-ms-input-placeholder {
+    color: #999999;
+  }
+  :-moz-placeholder {
+    color: #999999;
+  }
 `;

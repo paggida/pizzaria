@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Creators as SignActions } from '../../store/ducks/sign';
 import { Container } from './styles';
 import logo from '../../assets/img/logo.png';
 import ButtonSign from '../ButtonSign';
-import InputText from '../InputText';
+import Input from '../Input';
 
 class Login extends Component {
   state = {
@@ -28,9 +30,7 @@ class Login extends Component {
   };
 
   render() {
-    const {
-      email, password, emptyEmail, emptyPassword,
-    } = this.state;
+    const { email, password } = this.state;
     const { requestSignIn, loading, zIndex } = this.props;
 
     if (sessionStorage.getItem('tknPizza')) {
@@ -39,17 +39,17 @@ class Login extends Component {
     return (
       <Container zIndex={zIndex}>
         <img src={logo} alt="Pizzaria Don Juan" />
-        <InputText
+        <Input
+          type="text"
           placeholder="Seu e-mail"
-          error={emptyEmail}
           value={email}
-          onChange={e => this.setState({ email: e.target.value, error: false })}
+          onChange={e => this.setState({ email: e.target.value, emptyEmail: false })}
         />
-        <InputText
+        <Input
+          type="password"
           placeholder="Senha secreta"
-          error={emptyPassword}
           value={password}
-          onChange={e => this.setState({ password: e.target.value, error: false })}
+          onChange={e => this.setState({ password: e.target.value, emptyPassword: false })}
         />
         <ButtonSign
           type="button"
@@ -57,7 +57,7 @@ class Login extends Component {
             if (email && password) {
               requestSignIn(this.state);
             } else {
-              this.setState({ emptyEmail: !email, emptyPassword: !password });
+              toast.warn('Por favor, preencha o e-mail e senha para acesso');
             }
           }}
           loading={loading}

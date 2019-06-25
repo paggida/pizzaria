@@ -4,22 +4,21 @@ import { Input } from './styles';
 import 'font-awesome/css/font-awesome.css';
 
 const InputText = ({
-  placeholder, value, error, onChange,
+  type, placeholder, value, onChange,
 }) => (
-  <Input type="text" placeholder={placeholder} value={value} onChange={onChange} error={error} />
+  <Input type={type} placeholder={placeholder} value={value} onChange={onChange} />
 );
 
 InputText.propTypes = {
+  type: PropTypes.string.isRequired,
   value: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
-  error: PropTypes.bool,
 };
 
 InputText.defaultProps = {
   value: '',
   placeholder: '',
-  error: false,
   onChange: () => {},
 };
 
