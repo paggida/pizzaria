@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
   display: block;
-  font-family: Helvetica;
   font-size: 15px;
   font-weight: bold;
   text-align: center;

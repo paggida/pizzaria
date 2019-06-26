@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
   body{
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
   }
 `;
 

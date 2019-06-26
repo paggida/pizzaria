@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Input = styled.input`
   display: block;
-  font-family: Helvetica;
   font-size: 15px;
   text-align: left;
   color: #999999;
