@@ -4,9 +4,19 @@ import { Input } from './styles';
 import 'font-awesome/css/font-awesome.css';
 
 const InputText = ({
-  type, placeholder, value, onChange,
+  type, placeholder, value, onChange, enterFunc,
 }) => (
-  <Input type={type} placeholder={placeholder} value={value} onChange={onChange} />
+  <Input
+    type={type}
+    placeholder={placeholder}
+    value={value}
+    onChange={onChange}
+    onKeyUp={(e) => {
+      if (e.keyCode === 13) {
+        enterFunc();
+      }
+    }}
+  />
 );
 
 InputText.propTypes = {
@@ -14,12 +24,14 @@ InputText.propTypes = {
   value: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
+  enterFunc: PropTypes.func,
 };
 
 InputText.defaultProps = {
   value: '',
   placeholder: '',
   onChange: () => {},
+  enterFunc: () => {},
 };
 
 export default InputText;

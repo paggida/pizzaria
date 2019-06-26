@@ -12,13 +12,6 @@ import ButtonSign from '../ButtonSign';
 import Input from '../Input';
 
 class Login extends Component {
-  state = {
-    email: '',
-    password: '',
-    emptyEmail: false,
-    emptyPassword: false,
-  };
-
   static propTypes = {
     requestSignIn: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
@@ -29,9 +22,26 @@ class Login extends Component {
     zIndex: 0,
   };
 
+  state = {
+    email: '',
+    password: '',
+    emptyEmail: false,
+    emptyPassword: false,
+  };
+
+  handleSendForm = () => {
+    const { email, password } = this.state;
+    const { requestSignIn } = this.props;
+    if (email && password) {
+      requestSignIn(this.state);
+    } else {
+      toast.warn('Por favor, preencha o e-mail e senha para acesso');
+    }
+  };
+
   render() {
     const { email, password } = this.state;
-    const { requestSignIn, loading, zIndex } = this.props;
+    const { loading, zIndex } = this.props;
 
     if (sessionStorage.getItem('tknPizza')) {
       return <Redirect to="/Home" />;
@@ -50,19 +60,9 @@ class Login extends Component {
           placeholder="Senha secreta"
           value={password}
           onChange={e => this.setState({ password: e.target.value, emptyPassword: false })}
+          enterFunc={this.handleSendForm}
         />
-        <ButtonSign
-          type="button"
-          onClick={() => {
-            if (email && password) {
-              requestSignIn(this.state);
-            } else {
-              toast.warn('Por favor, preencha o e-mail e senha para acesso');
-            }
-          }}
-          loading={loading}
-          value="Entrar"
-        />
+        <ButtonSign type="button" onClick={this.handleSendForm} loading={loading} value="Entrar" />
       </Container>
     );
   }
