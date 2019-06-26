@@ -6,6 +6,7 @@ export const Types = {
   REQUEST_END_PURCHASE: 'purchase/REQUEST_END_PURCHASE',
   LOADING_PURCHASE: 'purchase/LOADING_PURCHASE',
   ENDING_PURCHASE: 'purchase/ENDING_PURCHASE',
+  DELIVERED_PURCHASE: 'purchase/DELIVERED_PURCHASE',
   FAILURE_PURCHASE: 'purchase/FAILURE_PURCHASE',
 };
 /**
@@ -14,6 +15,7 @@ export const Types = {
 const INITIAL_STATE = {
   loading: false,
   data: [],
+  delivered: false,
   error: null,
 };
 export default function purchase(state = INITIAL_STATE, action) {
@@ -29,6 +31,11 @@ export default function purchase(state = INITIAL_STATE, action) {
         loading: false,
         data: state.data.filter(item => item.id !== action.payload.id),
       };
+    case Types.DELIVERED_PURCHASE:
+      return {
+        ...state,
+        delivered: action.payload.delivered,
+      };
     case Types.FAILURE_PURCHASE:
       return { ...state, loading: false, error: action.payload.error };
     default:
@@ -43,5 +50,6 @@ export const Creators = {
   requestEndingPurchase: () => ({ type: Types.REQUEST_END_PURCHASE }),
   loadingPurchase: data => ({ type: Types.LOADING_PURCHASE, payload: { data } }),
   endingPurchase: id => ({ type: Types.ENDING_PURCHASE, payload: { id } }),
+  deliveredPurchase: delivered => ({ type: Types.DELIVERED_PURCHASE, payload: { delivered } }),
   failurePurchase: error => ({ type: Types.FAILURE_PURCHASE, payload: { error } }),
 };
