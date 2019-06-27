@@ -43,6 +43,7 @@ const Purchase = ({
     <strong>{`R$${formatFullValue}`}</strong>
     <PurchaseItens>
       {types.map((type, i) => (
+        // eslint-disable-next-line react/no-array-index-key
         <Item key={`${type.id}${i}`}>
           <img src={`${process.env.REACT_APP_API_URL}/files/${type.id}`} alt={type.description} />
           <div>
