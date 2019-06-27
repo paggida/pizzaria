@@ -19,6 +19,12 @@ class Purchase extends Model {
   user () {
     return this.belongsTo('App/Models/User')
   }
+  type () {
+    return this.belongsToMany('App/Models/Type').pivotTable('purchase_items')
+  }
+  size () {
+    return this.belongsToMany('App/Models/Size').pivotTable('purchase_items')
+  }
 }
 
 module.exports = Purchase
