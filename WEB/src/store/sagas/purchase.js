@@ -26,10 +26,10 @@ export function* endingPurchase({ payload: { id } }) {
     const tkn = sessionStorage.getItem('tknPizza')
       ? { headers: { Authorization: `bearer ${sessionStorage.getItem('tknPizza')}` } }
       : {};
-    const request = yield call(api.put, `/purchases/${id}`, { ...tkn, body: { delivered: true } });
+    const request = yield call(api.put, `/purchases/${id}`, { delivered: true }, tkn);
 
-    if (request.status === 204) {
-      yield put(PurchaseActions.endingPurchase(id));
+    if (request.status === 200) {
+      yield put(PurchaseActions.requestLoadingPurchase());
     }
   } catch (err) {
     yield put(PurchaseActions.addDevsFailure('Erro no acesso da API!'));

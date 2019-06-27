@@ -29,11 +29,12 @@ export function* signIn({ payload: { data } }) {
 
 export function* getNameUser() {
   try {
+    const tkn = sessionStorage.getItem('tknPizza')
+      ? { headers: { Authorization: `bearer ${sessionStorage.getItem('tknPizza')}` } }
+      : {};
     const {
       data: { admin, name },
-    } = yield call(api.get, '/users', {
-      headers: { Authorization: `bearer ${sessionStorage.getItem('tknPizza')}` },
-    });
+    } = yield call(api.get, '/users', tkn);
     if (admin) {
       yield put(SignActions.successSignIn(name));
     } else {

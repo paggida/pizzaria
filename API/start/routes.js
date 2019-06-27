@@ -36,8 +36,8 @@ Route.group(() => {
   Route.resource('purchases', 'PurchaseController')
     .validator(
       new Map([
-        [['purchases.update'], ['Purchase']],
-        [['purchases.store'], ['Purchase']]
+        [['purchases.update'], ['PurchaseU']],
+        [['purchases.store'], ['PurchaseC']]
       ])
     )
     .apiOnly()

@@ -17,7 +17,6 @@ const Purchase = ({
   formatFullValue,
   description,
   requestEndingPurchase,
-  requestLoadingPurchase,
   loading,
   delivered,
 }) => (
@@ -33,8 +32,7 @@ const Purchase = ({
           type="button"
           disabled={loading}
           onClick={() => {
-            // requestEndingPurchase();
-            // requestLoadingPurchase();
+            requestEndingPurchase(id);
           }}
         >
           {loading ? <i className="fa fa-clock-o fa-lg" /> : <i className="fa fa-check fa-lg" />}
@@ -73,7 +71,6 @@ Purchase.propTypes = {
   formatFullValue: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   requestEndingPurchase: PropTypes.func.isRequired,
-  requestLoadingPurchase: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   delivered: PropTypes.bool.isRequired,
 };
