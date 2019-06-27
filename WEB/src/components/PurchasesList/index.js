@@ -61,6 +61,8 @@ class PurchasesList extends Component {
                 fromNow={purchase.fromNow}
                 formatFullValue={purchase.formatFullValue}
                 description={purchase.description}
+                types={purchase.type}
+                sizes={purchase.size}
               />
             ))
           ) : (

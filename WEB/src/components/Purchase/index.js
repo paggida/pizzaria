@@ -7,8 +7,6 @@ import {
   Container, Thead, PurchaseItens, Item,
 } from './styles';
 import 'font-awesome/css/font-awesome.css';
-import pizza from '../../assets/img/pizza.png';
-import refri from '../../assets/img/cocaLata.jpg';
 
 const Purchase = ({
   id,
@@ -19,6 +17,8 @@ const Purchase = ({
   requestEndingPurchase,
   loading,
   delivered,
+  types,
+  sizes,
 }) => (
   <Container>
     <Thead>
@@ -42,20 +42,15 @@ const Purchase = ({
     <small>{`${fromNow}`}</small>
     <strong>{`R$${formatFullValue}`}</strong>
     <PurchaseItens>
-      <Item>
-        <img src={pizza} alt="pizza" />
-        <div>
-          <p className="type">Pizza Frango com catupiry</p>
-          <p className="size">Tamanho: Média</p>
-        </div>
-      </Item>
-      <Item>
-        <img src={refri} alt="refri" />
-        <div>
-          <p className="type">Coca Cola</p>
-          <p className="size">Lata 300ml</p>
-        </div>
-      </Item>
+      {types.map((type, i) => (
+        <Item key={`${type.id}${i}`}>
+          <img src={`${process.env.REACT_APP_API_URL}/files/${type.id}`} alt={type.description} />
+          <div>
+            <p className="type">{type.description}</p>
+            <p className="size">{`Tamanho: ${sizes[i].description}`}</p>
+          </div>
+        </Item>
+      ))}
     </PurchaseItens>
     <p className="description">
       <b>Observações: </b>
@@ -73,6 +68,19 @@ Purchase.propTypes = {
   requestEndingPurchase: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   delivered: PropTypes.bool.isRequired,
+  types: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      file_id: PropTypes.number,
+      description: PropTypes.string,
+    }),
+  ).isRequired,
+  sizes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      description: PropTypes.string,
+    }),
+  ).isRequired,
 };
 
 const mapStateToProps = state => ({
