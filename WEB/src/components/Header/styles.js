@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   height: 80px;
   width: 100%;
+  min-width: max-content;
   background-color: #0b2030;
 `;
 
@@ -20,6 +21,7 @@ export const Title = styled.div`
     img {
       width: 32px;
       height: 32px;
+      margin-left: 20px;
     }
     h1 {
       margin-left: 14px;
@@ -62,7 +64,7 @@ export const AdminData = styled.div`
   button {
     background: transparent;
     font-size: 14px;
-    color: ${props => (props.logOut ? '#e3293b' : '#b3b3b3')};
+    color: ${props => (props.logOut ? '#ff944d' : '#b3b3b3')};
     cursor: pointer;
   }
 `;

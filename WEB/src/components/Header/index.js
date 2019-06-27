@@ -62,7 +62,7 @@ Clique para confirmar
             <AdminAction>
               <button
                 type="button"
-                title={delivered ? 'Visualizar pedidos pendentes' : 'Visualizar pedidos entregues'}
+                title={delivered ? 'Visualizar pedidos pendentes' : 'Visualizar histórico'}
                 onClick={() => {
                   deliveredPurchase(!delivered);
                 }}

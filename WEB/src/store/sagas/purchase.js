@@ -26,7 +26,7 @@ export function* endingPurchase({ payload: { id } }) {
     const tkn = sessionStorage.getItem('tknPizza')
       ? { headers: { Authorization: `bearer ${sessionStorage.getItem('tknPizza')}` } }
       : {};
-    const request = yield call(api.del, `/purchases/${id}`, tkn);
+    const request = yield call(api.put, `/purchases/${id}`, { ...tkn, body: { delivered: true } });
 
     if (request.status === 204) {
       yield put(PurchaseActions.endingPurchase(id));

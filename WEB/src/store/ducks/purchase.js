@@ -47,7 +47,7 @@ export default function purchase(state = INITIAL_STATE, action) {
  */
 export const Creators = {
   requestLoadingPurchase: () => ({ type: Types.REQUEST_LOAD_PURCHASE }),
-  requestEndingPurchase: () => ({ type: Types.REQUEST_END_PURCHASE }),
+  requestEndingPurchase: id => ({ type: Types.REQUEST_END_PURCHASE, payload: { id } }),
   loadingPurchase: data => ({ type: Types.LOADING_PURCHASE, payload: { data } }),
   endingPurchase: id => ({ type: Types.ENDING_PURCHASE, payload: { id } }),
   deliveredPurchase: delivered => ({ type: Types.DELIVERED_PURCHASE, payload: { delivered } }),

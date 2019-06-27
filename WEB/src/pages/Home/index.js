@@ -4,22 +4,13 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { Creators as SignActions } from '../../store/ducks/sign';
-import { Creators as PurchaseActions } from '../../store/ducks/purchase';
 import Header from '../../components/Header';
-// import { Temp } from './styles';
+import PurchasesList from '../../components/PurchasesList';
 
 class Home extends Component {
   static propTypes = {
-    requestLoadingPurchase: PropTypes.func.isRequired,
     requestNameUser: PropTypes.func.isRequired,
     nameUser: PropTypes.string,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        description: PropTypes.string,
-        formatFullValue: PropTypes.string,
-      }),
-    ).isRequired,
   };
 
   static defaultProps = {
@@ -27,39 +18,29 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    const { requestLoadingPurchase, requestNameUser, nameUser } = this.props;
-
-    // Bloqueia acessos direto a página
+    const { requestNameUser, nameUser } = this.props;
+    // No caso de refresh, recupera o login
     if (sessionStorage.getItem('tknPizza')) {
-      // No caso de refresh, recupera o login
       if (!nameUser) requestNameUser();
-      requestLoadingPurchase();
     }
   }
 
   render() {
-    const { data } = this.props;
     return !sessionStorage.getItem('tknPizza') ? (
       <Redirect to="/" />
     ) : (
       <Fragment>
         <Header />
-        {data.map(purchase => (
-          <p key={purchase.id}>
-            {`${purchase.id}-${purchase.description}-R$${purchase.formatFullValue}`}
-          </p>
-        ))}
+        <PurchasesList />
       </Fragment>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  error: state.purchase.error,
-  data: state.purchase.data,
   nameUser: state.sign.nameUser,
 });
-const mapDispachToProps = dispatch => bindActionCreators({ ...PurchaseActions, ...SignActions }, dispatch);
+const mapDispachToProps = dispatch => bindActionCreators(SignActions, dispatch);
 export default connect(
   mapStateToProps,
   mapDispachToProps,
