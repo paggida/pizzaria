@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { colors } from '../../styles';
 
 export const Container = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ export const Thead = styled.div`
     text-align: left;
   }
   button {
-    background: transparent;
+    background: ${colors.transparent};
     cursor: pointer;
   }
 `;
@@ -33,7 +34,7 @@ export const Empty = styled.div`
   align-items: center;
   margin-bottom: 15px;
   border-radius: 10px;
-  box-shadow: #cccccc 4px 4px 12px 1px;
+  box-shadow: ${colors.light} 4px 4px 12px 1px;
   padding: 20px;
   img {
     margin-bottom: 20px;
@@ -41,6 +42,6 @@ export const Empty = styled.div`
   p {
     font-weight: bold;
     font-size: 19px;
-    color: #8c8c8c;
+    color: ${colors.darker};
   }
 `;

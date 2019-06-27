@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import { colors } from '../../styles';
 
 export const Container = styled.div`
   display: flex;
   height: 80px;
   width: 100%;
   min-width: max-content;
-  background-color: #0b2030;
+  background-color: ${colors.primary};
 `;
 
 export const Title = styled.div`
@@ -27,7 +28,7 @@ export const Title = styled.div`
       margin-left: 14px;
       font-weight: bold;
       font-size: 18px;
-      color: #ffffff;
+      color: ${colors.white};
       letter-spacing: 0;
       text-align: left;
     }
@@ -52,19 +53,19 @@ export const AdminData = styled.div`
   flex-direction: column;
   padding-right: 20px;
   margin-right: 20px;
-  border-right: 1px solid #b3b3b3;
+  border-right: 1px solid ${colors.regular};
   align-items: flex-end;
   width: 170px;
   strong {
     font-weight: bold;
     font-size: 16px;
-    color: #ffffff;
+    color: ${colors.white};
     text-align: left;
   }
   button {
     background: transparent;
     font-size: 14px;
-    color: ${props => (props.logOut ? '#ff944d' : '#b3b3b3')};
+    color: ${props => (props.logOut ? colors.warning : colors.regular)};
     cursor: pointer;
   }
 `;
@@ -72,9 +73,9 @@ export const AdminData = styled.div`
 export const AdminAction = styled.div`
   display: flex;
   button {
-    color: #ffffff;
+    color: ${colors.white};
     border-radius: 100px;
-    background-color: #e3293b;
+    background-color: ${colors.secondary};
     cursor: pointer;
     width: 37px;
     height: 37px;

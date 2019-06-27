@@ -1,20 +1,21 @@
 import styled from 'styled-components';
+import { colors } from '../../styles';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
   border-radius: 10px;
-  box-shadow: #cccccc 4px 4px 12px 1px;
+  box-shadow: ${colors.light} 4px 4px 12px 1px;
   padding: 20px;
   button {
-    background: transparent;
-    color: #e3293b;
+    background: ${colors.transparent};
+    color: ${colors.secondary};
     cursor: pointer;
   }
   small {
     font-size: 11px;
-    color: #706e7b;
+    color: ${colors.text};
     letter-spacing: 0;
     line-height: 14px;
     text-align: left;
@@ -24,12 +25,12 @@ export const Container = styled.div`
   strong {
     font-weight: Bold;
     font-size: 16px;
-    color: #0b2031;
+    color: ${colors.primary};
     letter-spacing: 0;
   }
   .description {
     font-size: 14px;
-    color: #706e7b;
+    color: ${colors.text};
     letter-spacing: 0;
     text-align: left;
   }
@@ -40,15 +41,15 @@ export const Thead = styled.div`
   justify-content: space-between;
   p {
     font-size: 18px;
-    color: #0b2031;
+    color: ${colors.primary};
     letter-spacing: 0;
     text-align: left;
   }
 `;
 
 export const PurchaseItens = styled.div`
-  border-top: 1px solid #cccccc;
-  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid ${colors.light};
+  border-bottom: 1px solid ${colors.light};
   padding-top: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -58,7 +59,7 @@ export const Item = styled.div`
   display: inline-flex;
   flex-direction: row;
   border-radius: 10px;
-  border: 1px solid #cccccc;
+  border: 1px solid ${colors.light};
   overflow: hidden;
   padding: 10px 20px 10px 20px;
   margin-right: 20px;
@@ -72,14 +73,14 @@ export const Item = styled.div`
   div {
     .type {
       font-size: 13px;
-      color: #0b2031;
+      color: ${colors.primary};
       letter-spacing: 0;
       text-align: left;
       margin-bottom: 5px;
     }
     .size {
       font-size: 11px;
-      color: #706e7b;
+      color: ${colors.text};
       letter-spacing: 0;
       line-height: 10.77px;
       text-align: left;

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
+import { colors } from '../../styles';
 
 export const Input = styled.input`
   display: block;
   font-size: 15px;
   text-align: left;
-  color: #999999;
+  color: ${colors.regular};
   letter-spacing: 0;
   border-radius: 5px;
-  border: ${props => (props.error ? '2px solid #f00' : 0)};
   height: 45px;
   width: 100%;
   max-width: 300px;
@@ -15,15 +15,15 @@ export const Input = styled.input`
   padding-left: 20px;
   padding-right: 20px;
   ::-webkit-input-placeholder {
-    color: #999999;
+    color: ${colors.regular};
   }
   ::-moz-placeholder {
-    color: #999999;
+    color: ${colors.regular};
   }
   :-ms-input-placeholder {
-    color: #999999;
+    color: ${colors.regular};
   }
   :-moz-placeholder {
-    color: #999999;
+    color: ${colors.regular};
   }
 `;
