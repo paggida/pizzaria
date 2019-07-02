@@ -1,22 +1,23 @@
 import React, { Fragment } from 'react';
 import { Text, StatusBar, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
+//import styles from './styles';
 import { colors } from '~/styles';
 
-const SignUp = ({ navigation }) => (
+const Products = ({ navigation }) => (
   <Fragment>
     <StatusBar backgroundColor={colors.black} barStyle="light-content" />
-    <Text>Tela de SignUp</Text>
+    <Text>Tela dos Produtos</Text>
     <TouchableOpacity onPress={()=>{navigation.navigate('SignIn')}}>
-      <Text>Já tenho login</Text>
+      <Text>Sair</Text>
     </TouchableOpacity>
   </Fragment>
 );
 
-SignUp.propTypes={
+Products.propTypes={
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
   }).isRequired,
 }
 
-export default SignUp;
+export default Products;

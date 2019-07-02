@@ -1,18 +1,15 @@
 export default {
+  transparent: 'transparent',
   white: '#FFF',
-  lighter: '#EEE',
-  light: '#DDD',
+  light: '#cccccc',
   regular: '#999',
-  dark: '#666',
-  darker: '#333',
+  darker: '#8c8c8c',
   black: '#000',
 
-  primary: '#7A91CA',
-  secundary: '#444A5A',
-  success: '#9DCA83',
-  danger: '#E37A7A',
+  primary: '#0b2030',
+  secondary: '#e3293b',
+  tertiary: '#e84a5a',
+  warning: '#ff944d',
+  text: '#706e7b',
 
-  transparent: 'transparent',
-  darkTransparent: 'rgba(0,0,0,0.6)',
-  whiteTransparent: 'rgba(255,255,255,0.6)',
 };
