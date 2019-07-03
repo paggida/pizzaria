@@ -3,28 +3,36 @@ import { Text, Image, StatusBar, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
 import style from "./styles";
 import { colors } from "~/styles";
-import HeaderActions from "~/components/HeaderActions";
+import HeaderBack from "~/components/HeaderBack";
+import Icons from "react-native-vector-icons/FontAwesome";
 
-const Products = ({ navigation }) => (
+const Purchase = ({ navigation }) => (
   <Fragment>
     <StatusBar backgroundColor={colors.black} barStyle="light-content" />
     <Image
       style={style.background}
       source={require("~/assets/img/headerBackground.png")}
     />
-    <HeaderActions title="Pizzaria Don Juan" navigation={navigation} />
+    <HeaderBack
+      title="Realizar pedido"
+      backPage={"Products"}
+      price="R$55,00"
+      navigation={navigation}
+    />
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate("SignIn");
+        navigation.navigate("Products");
       }}
     >
-      <Text>Sair</Text>
+      <Text>{"FINALIZAR >"}</Text>
     </TouchableOpacity>
   </Fragment>
 );
 
-Products.propTypes = {
-  navigation: PropTypes.shape().isRequired
+Purchase.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func
+  }).isRequired
 };
 
-export default Products;
+export default Purchase;

@@ -3,28 +3,25 @@ import { Text, Image, StatusBar, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
 import style from "./styles";
 import { colors } from "~/styles";
-import HeaderActions from "~/components/HeaderActions";
+import HeaderBack from "~/components/HeaderBack";
 
-const Products = ({ navigation }) => (
+const History = ({ navigation }) => (
   <Fragment>
     <StatusBar backgroundColor={colors.black} barStyle="light-content" />
     <Image
       style={style.background}
       source={require("~/assets/img/headerBackground.png")}
     />
-    <HeaderActions title="Pizzaria Don Juan" navigation={navigation} />
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate("SignIn");
-      }}
-    >
-      <Text>Sair</Text>
-    </TouchableOpacity>
+    <HeaderBack
+      title="Meus Pedidos"
+      backPage={"Products"}
+      navigation={navigation}
+    />
   </Fragment>
 );
 
-Products.propTypes = {
+History.propTypes = {
   navigation: PropTypes.shape().isRequired
 };
 
-export default Products;
+export default History;
