@@ -3,7 +3,7 @@ import { Text, Image, View, TextInput, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
 import styles from "./styles";
 
-class LogIn extends Component {
+class NewUser extends Component {
   state = {
     nome: "",
     email: "",
@@ -78,4 +78,4 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn;
+export default NewUser;

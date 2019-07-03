@@ -11,7 +11,7 @@ const SignUp = ({ navigation }) => (
     <StatusBar backgroundColor={colors.black} barStyle="light-content" />
     <Image
       style={style.background}
-      source={require("~/assets/img/background.png")}
+      source={require("~/assets/img/appBackground.png")}
     />
     <LinearGradient
       style={style.background}
