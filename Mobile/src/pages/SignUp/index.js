@@ -1,20 +1,41 @@
-import React, { Fragment } from "react";
-import { Text, StatusBar, TouchableOpacity } from "react-native";
+import React from "react";
+import { Text, View, StatusBar, Image, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
+import LinearGradient from "react-native-linear-gradient";
+import style from "./styles";
 import { colors } from "~/styles";
+import NewUser from "~/components/NewUser";
 
 const SignUp = ({ navigation }) => (
-  <Fragment>
+  <View style={style.container}>
     <StatusBar backgroundColor={colors.black} barStyle="light-content" />
-    <Text>Tela de SignUp</Text>
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate("SignIn");
-      }}
-    >
-      <Text>Já tenho login</Text>
-    </TouchableOpacity>
-  </Fragment>
+    <Image
+      style={style.background}
+      source={require("~/assets/img/background.png")}
+    />
+    <LinearGradient
+      style={style.background}
+      colors={[colors.transparent, colors.black]}
+      locations={[0, 0.97]}
+    />
+    <View style={style.containerForm}>
+      <View style={style.form}>
+        <NewUser
+          sucessSave={() => {
+            navigation.navigate("SignIn");
+          }}
+        />
+        <TouchableOpacity
+          style={[style.buttonSignUp]}
+          onPress={() => {
+            navigation.navigate("SignIn");
+          }}
+        >
+          <Text style={style.buttonText}>Já tenho login</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  </View>
 );
 
 SignUp.propTypes = {

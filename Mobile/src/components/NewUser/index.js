@@ -5,24 +5,35 @@ import styles from "./styles";
 
 class LogIn extends Component {
   state = {
+    nome: "",
     email: "",
-    password: ""
+    password: "",
+    passwordConfirmed: ""
   };
 
   static propTypes = {
-    sucessLogIn: PropTypes.func.isRequired
+    sucessSave: PropTypes.func.isRequired
   };
 
   handleFormSubmit = () => {
-    const { sucessLogIn } = this.props;
-    sucessLogIn();
+    const { sucessSave } = this.props;
+    sucessSave();
   };
 
   render() {
-    const { email, password } = this.state;
+    const { nome, email, password, passwordConfirmed } = this.state;
     return (
       <View style={styles.container}>
         <Image style={styles.logo} source={require("~/assets/img/logo.png")} />
+        <TextInput
+          style={styles.input}
+          value={nome}
+          onChangeText={nome => this.setState({ nome })}
+          autoCorrect={false}
+          autoCapitalize="none"
+          placeholder="Nome completo"
+          placeholderTextColor={styles.placeholder.color}
+        />
         <TextInput
           style={styles.input}
           value={email}
@@ -42,12 +53,24 @@ class LogIn extends Component {
           placeholder="Senha secreta"
           placeholderTextColor={styles.placeholder.color}
         />
-        <View style={styles.containerSignIn}>
+        <TextInput
+          style={styles.input}
+          value={passwordConfirmed}
+          onChangeText={passwordConfirmed =>
+            this.setState({ passwordConfirmed })
+          }
+          secureTextEntry={true}
+          autoCorrect={false}
+          autoCapitalize="none"
+          placeholder="Confirme a senha"
+          placeholderTextColor={styles.placeholder.color}
+        />
+        <View style={styles.containerNewUser}>
           <TouchableOpacity
-            style={[styles.buttonSignIn]}
+            style={[styles.buttonNewUser]}
             onPress={this.handleFormSubmit}
           >
-            <Text style={styles.buttonText}>Entrar</Text>
+            <Text style={styles.buttonText}>Criar conta</Text>
           </TouchableOpacity>
         </View>
       </View>
