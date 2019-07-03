@@ -15,7 +15,7 @@ const Purchase = ({ navigation }) => (
     />
     <HeaderBack
       title="Realizar pedido"
-      backPage={"Products"}
+      backPage={"ShoppingCart"}
       price="R$55,00"
       navigation={navigation}
     />

@@ -1,34 +1,52 @@
 import React, { Component } from "react";
-import { Text, Image, View, TextInput, TouchableOpacity } from "react-native";
+import { connect } from "react-redux";
+import {
+  Text,
+  Image,
+  View,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator
+} from "react-native";
 import PropTypes from "prop-types";
+import { bindActionCreators } from "redux";
+import { Creators as SignActions } from "~/store/ducks/sign";
 import styles from "./styles";
 
 class NewUser extends Component {
   state = {
-    nome: "",
+    name: "",
     email: "",
     password: "",
     passwordConfirmed: ""
   };
 
   static propTypes = {
-    sucessSave: PropTypes.func.isRequired
+    requestNewUser: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired
   };
 
   handleFormSubmit = () => {
-    const { sucessSave } = this.props;
-    sucessSave();
+    const { requestNewUser } = this.props;
+    const { name, email, password, passwordConfirmed } = this.state;
+    requestNewUser({
+      name,
+      email,
+      password,
+      password_confirmation: passwordConfirmed
+    });
   };
 
   render() {
-    const { nome, email, password, passwordConfirmed } = this.state;
+    const { name, email, password, passwordConfirmed } = this.state;
+    const { loading } = this.props;
     return (
       <View style={styles.container}>
         <Image style={styles.logo} source={require("~/assets/img/logo.png")} />
         <TextInput
           style={styles.input}
-          value={nome}
-          onChangeText={nome => this.setState({ nome })}
+          value={name}
+          onChangeText={name => this.setState({ name })}
           autoCorrect={false}
           autoCapitalize="none"
           placeholder="Nome completo"
@@ -70,7 +88,11 @@ class NewUser extends Component {
             style={[styles.buttonNewUser]}
             onPress={this.handleFormSubmit}
           >
-            <Text style={styles.buttonText}>Criar conta</Text>
+            {loading ? (
+              <ActivityIndicator size="small" color={styles.icon.color} />
+            ) : (
+              <Text style={styles.buttonText}>Criar conta</Text>
+            )}
           </TouchableOpacity>
         </View>
       </View>
@@ -78,4 +100,11 @@ class NewUser extends Component {
   }
 }
 
-export default NewUser;
+const mapStateToProps = state => ({
+  loading: state.sign.loading
+});
+const mapDispachToProps = dispatch => bindActionCreators(SignActions, dispatch);
+export default connect(
+  mapStateToProps,
+  mapDispachToProps
+)(NewUser);

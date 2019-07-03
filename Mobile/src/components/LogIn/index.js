@@ -1,6 +1,16 @@
 import React, { Component } from "react";
-import { Text, Image, View, TextInput, TouchableOpacity } from "react-native";
+import { connect } from "react-redux";
+import {
+  Text,
+  Image,
+  View,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator
+} from "react-native";
 import PropTypes from "prop-types";
+import { bindActionCreators } from "redux";
+import { Creators as SignActions } from "~/store/ducks/sign";
 import styles from "./styles";
 
 class LogIn extends Component {
@@ -10,16 +20,19 @@ class LogIn extends Component {
   };
 
   static propTypes = {
-    sucessLogIn: PropTypes.func.isRequired
+    requestSignIn: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired
   };
 
   handleFormSubmit = () => {
-    const { sucessLogIn } = this.props;
-    sucessLogIn();
+    const { email, password } = this.state;
+    const { requestSignIn, loading } = this.props;
+    requestSignIn({ email, password });
   };
 
   render() {
     const { email, password } = this.state;
+    const { loading } = this.props;
     return (
       <View style={styles.container}>
         <Image style={styles.logo} source={require("~/assets/img/logo.png")} />
@@ -47,7 +60,11 @@ class LogIn extends Component {
             style={[styles.buttonSignIn]}
             onPress={this.handleFormSubmit}
           >
-            <Text style={styles.buttonText}>Entrar</Text>
+            {loading ? (
+              <ActivityIndicator size="small" color={styles.icon.color} />
+            ) : (
+              <Text style={styles.buttonText}>Entrar</Text>
+            )}
           </TouchableOpacity>
         </View>
       </View>
@@ -55,4 +72,11 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn;
+const mapStateToProps = state => ({
+  loading: state.sign.loading
+});
+const mapDispachToProps = dispatch => bindActionCreators(SignActions, dispatch);
+export default connect(
+  mapStateToProps,
+  mapDispachToProps
+)(LogIn);

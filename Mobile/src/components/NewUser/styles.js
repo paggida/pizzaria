@@ -11,6 +11,9 @@ const styles = StyleSheet.create({
     width: 72,
     marginBottom: metrics.baseMargin * 3
   },
+  icon: {
+    color: colors.white
+  },
   input: {
     alignSelf: "stretch",
     borderWidth: 1,

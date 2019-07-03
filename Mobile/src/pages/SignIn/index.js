@@ -20,11 +20,7 @@ const SignIn = ({ navigation }) => (
     />
     <View style={style.containerForm}>
       <View style={style.form}>
-        <LogIn
-          sucessLogIn={() => {
-            navigation.navigate("Products");
-          }}
-        />
+        <LogIn />
         <TouchableOpacity
           style={[style.buttonSignUp]}
           onPress={() => {
