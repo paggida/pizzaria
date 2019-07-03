@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StatusBar, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import LinearGradient from 'react-native-linear-gradient';
+//import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
 import { colors } from '~/styles';
 import LogIn from '~/components/LogIn'
@@ -10,7 +10,7 @@ const SignIn = ({ navigation }) => (
   <View style={styles.container}>
     <StatusBar backgroundColor={colors.black} barStyle="light-content" />
     <Image  style={styles.background} source={require('~/assets/img/background.png')}/>
-    <LinearGradient style={styles.background} colors={[colors.transparent, colors.black]} locations={[0,0.97]}/>
+    {/*<LinearGradient style={styles.background} colors={[colors.transparent, colors.black]} locations={[0,0.97]}/>*/}
     <View style={styles.containerForm}>
       <View style={styles.form}>
         <LogIn sucessLogIn={()=>{navigation.navigate('Products')}}/>
