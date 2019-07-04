@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginBottom: metrics.baseMargin * 3,
     ...Platform.select({
       ios: {
         paddingTop: 20 + metrics.baseMargin * 2

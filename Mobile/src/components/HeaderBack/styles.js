@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
+    marginBottom: metrics.baseMargin * 3,
     ...Platform.select({
       ios: {
         paddingTop: 20 + metrics.baseMargin * 3
