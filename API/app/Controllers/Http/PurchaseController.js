@@ -37,13 +37,17 @@ class PurchaseController {
     return purchase
   }
   async show ({ params }) {
-    const purchase = await Purchase.findOrFail(params.id)
-    await purchase.load('purchaseItem')
-    await purchase.load('user')
-    await purchase.load('type')
-    await purchase.load('size')
-    purchase.fromNow()
-    return purchase
+    const purchase = await Purchase.query()
+      .where('user_id', '=', params.id)
+      .with('purchaseItem')
+      .with('user')
+      .with('type')
+      .with('size')
+      .fetch()
+    return purchase.rows.map(item => {
+      item.fromNow()
+      return item
+    })
   }
   async update ({ params, request }) {
     const data = request.only([
