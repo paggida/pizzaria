@@ -11,5 +11,4 @@ export default {
   tertiary: '#e84a5a',
   warning: '#ff944d',
   text: '#706e7b',
-
 };
