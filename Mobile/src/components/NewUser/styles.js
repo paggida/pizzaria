@@ -1,21 +1,21 @@
-import { StyleSheet } from "react-native";
-import { colors, metrics } from "~/styles";
+import { StyleSheet } from 'react-native';
+import { colors, metrics } from '~/styles';
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "column",
-    alignItems: "center"
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   logo: {
     height: 72,
     width: 72,
-    marginBottom: metrics.baseMargin * 3
+    marginBottom: metrics.baseMargin * 3,
   },
   icon: {
-    color: colors.white
+    color: colors.white,
   },
   input: {
-    alignSelf: "stretch",
+    alignSelf: 'stretch',
     borderWidth: 1,
     borderColor: colors.light,
     borderRadius: metrics.baseRadius * 2,
@@ -24,46 +24,46 @@ const styles = StyleSheet.create({
     padding: metrics.basePadding,
     fontSize: 16,
     color: colors.regular,
-    backgroundColor: colors.white
+    backgroundColor: colors.white,
   },
   placeholder: {
-    color: colors.light
+    color: colors.light,
   },
   containerNewUser: {
     flex: -1,
-    flexDirection: "row"
+    flexDirection: 'row',
   },
   buttonNewUser: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
     borderRadius: metrics.baseRadius * 2,
     marginTop: metrics.baseMargin,
     marginHorizontal: metrics.baseMargin * 3,
     padding: metrics.basePadding * 1.2,
-    backgroundColor: colors.secondary
+    backgroundColor: colors.secondary,
   },
   buttonNewUserDisabled: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
     borderRadius: metrics.baseRadius * 2,
     marginTop: metrics.baseMargin,
     marginHorizontal: metrics.baseMargin * 3,
     padding: metrics.basePadding * 1.2,
-    backgroundColor: colors.tertiary
+    backgroundColor: colors.tertiary,
   },
   buttonSignUp: {
-    marginTop: metrics.baseMargin * 3
+    marginTop: metrics.baseMargin * 3,
   },
   buttonText: {
     fontSize: 18,
-    fontWeight: "bold",
-    color: colors.white
+    fontWeight: 'bold',
+    color: colors.white,
   },
   buttonTextDisabled: {
     fontSize: 18,
-    fontWeight: "bold",
-    color: colors.light
-  }
+    fontWeight: 'bold',
+    color: colors.light,
+  },
 });
 
 export default styles;

@@ -1,38 +1,38 @@
-import { Platform, StyleSheet } from "react-native";
-import { colors, metrics } from "~/styles";
+import { Platform, StyleSheet } from 'react-native';
+import { colors, metrics } from '~/styles';
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: metrics.baseMargin * 3,
     ...Platform.select({
       ios: {
-        paddingTop: 20 + metrics.baseMargin * 3
+        paddingTop: 20 + metrics.baseMargin * 3,
       },
       android: {
-        paddingTop: metrics.baseMargin * 3
-      }
-    })
+        paddingTop: metrics.baseMargin * 3,
+      },
+    }),
   },
   containerTitle: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginRight: metrics.baseMargin * 2
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginRight: metrics.baseMargin * 2,
   },
   buttonHistory: {
-    marginHorizontal: metrics.baseMargin * 2
+    marginHorizontal: metrics.baseMargin * 2,
   },
   title: {
     fontSize: 18,
-    fontWeight: "bold",
-    color: colors.white
+    fontWeight: 'bold',
+    color: colors.white,
   },
   icon: {
-    color: colors.white
-  }
+    color: colors.white,
+  },
 });
 
 export default styles;

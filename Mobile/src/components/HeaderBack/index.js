@@ -1,10 +1,12 @@
-import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
-import Icons from "react-native-vector-icons/FontAwesome";
-import PropTypes from "prop-types";
-import styles from "./styles";
+import React from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+import Icons from 'react-native-vector-icons/FontAwesome';
+import PropTypes from 'prop-types';
+import styles from './styles';
 
-const HeaderBack = ({ title, backPage, navigation, price }) => (
+const HeaderBack = ({
+  title, backPage, navigation, price,
+}) => (
   <View style={styles.container}>
     <TouchableOpacity
       style={[styles.buttonHistory]}
@@ -26,12 +28,12 @@ HeaderBack.propTypes = {
   title: PropTypes.string.isRequired,
   backPage: PropTypes.string.isRequired,
   navigation: PropTypes.shape({
-    navigate: PropTypes.func
-  }).isRequired
+    navigate: PropTypes.func,
+  }).isRequired,
 };
 
 HeaderBack.defaultProps = {
-  price: ""
+  price: '',
 };
 
 export default HeaderBack;

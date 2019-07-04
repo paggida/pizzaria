@@ -1,7 +1,7 @@
-import React from "react";
-import { Text, View } from "react-native";
-import PropTypes from "prop-types";
-import styles from "./styles";
+import React from 'react';
+import { Text, View } from 'react-native';
+import PropTypes from 'prop-types';
+import styles from './styles';
 
 const Purchase = ({ purchase, fromNow, formatFullValue }) => (
   <View style={styles.container}>
@@ -14,7 +14,7 @@ const Purchase = ({ purchase, fromNow, formatFullValue }) => (
 Purchase.propTypes = {
   purchase: PropTypes.string.isRequired,
   fromNow: PropTypes.string.isRequired,
-  formatFullValue: PropTypes.string.isRequired
+  formatFullValue: PropTypes.string.isRequired,
 };
 
 export default Purchase;
