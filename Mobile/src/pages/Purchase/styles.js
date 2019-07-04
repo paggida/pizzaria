@@ -1,13 +1,13 @@
-import { StyleSheet } from "react-native";
-import { colors } from "~/styles";
+import { StyleSheet } from 'react-native';
+import { colors } from '~/styles';
 
 export const styles = StyleSheet.create({
   background: {
-    position: "absolute"
+    position: 'absolute',
   },
   icon: {
-    color: colors.white
-  }
+    color: colors.white,
+  },
 });
 
 export default styles;

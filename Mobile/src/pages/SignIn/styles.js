@@ -2,25 +2,25 @@ import { StyleSheet } from 'react-native';
 import { colors, metrics } from '~/styles';
 
 export const styles = StyleSheet.create({
-  container:{
+  container: {
     position: 'absolute',
   },
-  background:{
+  background: {
     position: 'absolute',
     height: metrics.screenHeigth,
-    width:  metrics.screenWidth,
+    width: metrics.screenWidth,
   },
-  containerForm:{
-    flex:1,
+  containerForm: {
+    flex: 1,
     height: metrics.screenHeigth,
-    width:  metrics.screenWidth,
+    width: metrics.screenWidth,
     flexDirection: 'row',
-    alignItems: "center",
+    alignItems: 'center',
   },
-  form:{
-    flex:1,
+  form: {
+    flex: 1,
     flexDirection: 'column',
-    alignItems: "center",
+    alignItems: 'center',
   },
   buttonSignUp: {
     marginTop: metrics.baseMargin * 3,
