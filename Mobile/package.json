@@ -23,7 +23,8 @@
     "reactotron-redux-saga": "^4.2.2",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.4",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "react-native-awesome-alerts": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

@@ -5,7 +5,8 @@ export const Types = {
   REQUEST_SIGN_IN: "sign/REQUEST_SIGN_IN",
   REQUEST_NEW_USER: "sign/REQUEST_NEW_USER",
   SUCCESS_SIGN_IN: "sign/SUCCESS_SIGN_IN",
-  FAILURE_SIGN: "sign/FAILURE_SIGN"
+  FAILURE_SIGN: "sign/FAILURE_SIGN",
+  CLEAN_ERROR: "sign/CLEAN_ERROR"
 };
 /**
  * Reducer
@@ -28,6 +29,11 @@ export default function sign(state = INITIAL_STATE, action) {
         loading: false,
         error: action.payload.error
       };
+    case Types.CLEAN_ERROR:
+      return {
+        ...state,
+        error: null
+      };
     default:
       return state;
   }
@@ -39,5 +45,6 @@ export const Creators = {
   requestSignIn: data => ({ type: Types.REQUEST_SIGN_IN, payload: { data } }),
   requestNewUser: data => ({ type: Types.REQUEST_NEW_USER, payload: { data } }),
   successSignIn: () => ({ type: Types.SUCCESS_SIGN_IN }),
-  failureSignIn: error => ({ type: Types.FAILURE_SIGN, payload: { error } })
+  failureSignIn: error => ({ type: Types.FAILURE_SIGN, payload: { error } }),
+  cleanError: () => ({ type: Types.CLEAN_ERROR })
 };

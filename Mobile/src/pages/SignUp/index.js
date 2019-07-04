@@ -7,7 +7,7 @@ import style from "./styles";
 import { colors } from "~/styles";
 import NewUser from "~/components/NewUser";
 
-const SignUp = ({ navigation, logged }) => {
+const SignUp = ({ navigation, logged, error }) => {
   if (logged) navigation.navigate("Products");
   return (
     <View style={style.container}>
@@ -29,6 +29,7 @@ const SignUp = ({ navigation, logged }) => {
             }}
           />
           <TouchableOpacity
+            disabled={!!error}
             style={[style.buttonSignUp]}
             onPress={() => {
               navigation.navigate("SignIn");
@@ -44,12 +45,18 @@ const SignUp = ({ navigation, logged }) => {
 
 SignUp.propTypes = {
   logged: PropTypes.bool.isRequired,
+  error: PropTypes.string,
   navigation: PropTypes.shape({
     navigate: PropTypes.func
   }).isRequired
 };
 
+SignUp.defaultProps = {
+  error: null
+};
+
 const mapStateToProps = state => ({
-  logged: state.sign.logged
+  logged: state.sign.logged,
+  error: state.sign.error
 });
 export default connect(mapStateToProps)(SignUp);

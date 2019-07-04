@@ -7,7 +7,7 @@ import style from "./styles";
 import { colors } from "~/styles";
 import LogIn from "~/components/LogIn";
 
-const SignIn = ({ navigation, logged }) => {
+const SignIn = ({ navigation, logged, error }) => {
   if (logged) navigation.navigate("Products");
   return (
     <View style={style.container}>
@@ -25,6 +25,7 @@ const SignIn = ({ navigation, logged }) => {
         <View style={style.form}>
           <LogIn />
           <TouchableOpacity
+            disabled={!!error}
             style={[style.buttonSignUp]}
             onPress={() => {
               navigation.navigate("SignUp");
@@ -40,12 +41,14 @@ const SignIn = ({ navigation, logged }) => {
 
 SignIn.propTypes = {
   logged: PropTypes.bool.isRequired,
+  error: PropTypes.string,
   navigation: PropTypes.shape({
     navigate: PropTypes.func
   }).isRequired
 };
 
 const mapStateToProps = state => ({
-  logged: state.sign.logged
+  logged: state.sign.logged,
+  error: state.sign.error
 });
 export default connect(mapStateToProps)(SignIn);

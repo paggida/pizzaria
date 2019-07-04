@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
+import Alert from "react-native-awesome-alerts";
 import { Creators as SignActions } from "~/store/ducks/sign";
 import styles from "./styles";
 
@@ -23,7 +24,13 @@ class NewUser extends Component {
 
   static propTypes = {
     requestNewUser: PropTypes.func.isRequired,
-    loading: PropTypes.bool.isRequired
+    cleanError: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
+    error: PropTypes.string
+  };
+
+  static defaultProps = {
+    error: ""
   };
 
   handleFormSubmit = () => {
@@ -40,7 +47,7 @@ class NewUser extends Component {
 
   render() {
     const { name, email, password, passwordConfirmed } = this.state;
-    const { loading } = this.props;
+    const { loading, error, cleanError } = this.props;
     const emptyForm =
       !name || !email || !password || !passwordConfirmed ? true : false;
 
@@ -103,18 +110,31 @@ class NewUser extends Component {
                   emptyForm ? styles.buttonTextDisabled : styles.buttonText
                 }
               >
-                Criar conta
+                Criar c
               </Text>
             )}
           </TouchableOpacity>
         </View>
+        <Alert
+          show={!!error}
+          showProgress={false}
+          title="Ops..."
+          message={error}
+          closeOnTouchOutside={false}
+          closeOnHardwareBackPress={false}
+          showConfirmButton={true}
+          confirmText="OK"
+          confirmButtonColor={styles.buttonNewUser.backgroundColor}
+          onConfirmPressed={cleanError}
+        />
       </View>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  loading: state.sign.loading
+  loading: state.sign.loading,
+  error: state.sign.error
 });
 const mapDispachToProps = dispatch => bindActionCreators(SignActions, dispatch);
 export default connect(

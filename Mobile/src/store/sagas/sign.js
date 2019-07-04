@@ -47,7 +47,7 @@ export function* newUser({ payload: { data } }) {
       err.message.indexOf("code 401") !== -1 ||
       err.message.indexOf("code 400") !== -1
     ) {
-      yield put(SignActions.failureSignIn("Email ou senha incorretos!"));
+      yield put(SignActions.failureSignIn("Dados incorretos!"));
     } else {
       yield put(SignActions.failureSignIn("Erro no acesso da API!"));
     }
