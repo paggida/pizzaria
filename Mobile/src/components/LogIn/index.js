@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
   Text, Image, View, TextInput, TouchableOpacity, ActivityIndicator,
 } from 'react-native';
-import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
 import Alert from 'react-native-awesome-alerts';
+import PropTypes from 'prop-types';
 import { Creators as SignActions } from '~/store/ducks/sign';
 import styles from './styles';
 
