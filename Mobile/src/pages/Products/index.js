@@ -13,13 +13,6 @@ const Products = ({ navigation }) => (
       source={require("~/assets/img/headerBackground.png")}
     />
     <HeaderActions title="Pizzaria Don Juan" navigation={navigation} />
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate("SignIn");
-      }}
-    >
-      <Text>Sair</Text>
-    </TouchableOpacity>
   </Fragment>
 );
 

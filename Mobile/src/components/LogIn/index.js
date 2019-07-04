@@ -26,7 +26,7 @@ class LogIn extends Component {
 
   handleFormSubmit = () => {
     const { email, password } = this.state;
-    const { requestSignIn, loading } = this.props;
+    const { requestSignIn } = this.props;
     requestSignIn({ email, password });
   };
 

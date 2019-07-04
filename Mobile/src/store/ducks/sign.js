@@ -12,6 +12,7 @@ export const Types = {
  */
 const INITIAL_STATE = {
   loading: false,
+  logged: false,
   error: null
 };
 export default function sign(state = INITIAL_STATE, action) {
@@ -20,7 +21,7 @@ export default function sign(state = INITIAL_STATE, action) {
     case Types.REQUEST_SIGN_IN:
       return { ...state, loading: true };
     case Types.SUCCESS_SIGN_IN:
-      return { ...state, loading: false };
+      return { ...state, loading: false, logged: true };
     case Types.FAILURE_SIGN:
       return {
         ...state,
