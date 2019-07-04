@@ -29,6 +29,7 @@ class NewUser extends Component {
   handleFormSubmit = () => {
     const { requestNewUser } = this.props;
     const { name, email, password, passwordConfirmed } = this.state;
+
     requestNewUser({
       name,
       email,
@@ -40,6 +41,9 @@ class NewUser extends Component {
   render() {
     const { name, email, password, passwordConfirmed } = this.state;
     const { loading } = this.props;
+    const emptyForm =
+      !name || !email || !password || !passwordConfirmed ? true : false;
+
     return (
       <View style={styles.container}>
         <Image style={styles.logo} source={require("~/assets/img/logo.png")} />
@@ -85,13 +89,22 @@ class NewUser extends Component {
         />
         <View style={styles.containerNewUser}>
           <TouchableOpacity
-            style={[styles.buttonNewUser]}
+            disabled={emptyForm}
+            style={
+              emptyForm ? styles.buttonNewUserDisabled : styles.buttonNewUser
+            }
             onPress={this.handleFormSubmit}
           >
             {loading ? (
               <ActivityIndicator size="small" color={styles.icon.color} />
             ) : (
-              <Text style={styles.buttonText}>Criar conta</Text>
+              <Text
+                style={
+                  emptyForm ? styles.buttonTextDisabled : styles.buttonText
+                }
+              >
+                Criar conta
+              </Text>
             )}
           </TouchableOpacity>
         </View>

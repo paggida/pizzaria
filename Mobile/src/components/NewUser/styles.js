@@ -42,6 +42,15 @@ const styles = StyleSheet.create({
     padding: metrics.basePadding * 1.2,
     backgroundColor: colors.secondary
   },
+  buttonNewUserDisabled: {
+    flex: 1,
+    alignItems: "center",
+    borderRadius: metrics.baseRadius * 2,
+    marginTop: metrics.baseMargin,
+    marginHorizontal: metrics.baseMargin * 3,
+    padding: metrics.basePadding * 1.2,
+    backgroundColor: colors.tertiary
+  },
   buttonSignUp: {
     marginTop: metrics.baseMargin * 3
   },
@@ -49,6 +58,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     color: colors.white
+  },
+  buttonTextDisabled: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: colors.light
   }
 });
 

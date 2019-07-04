@@ -33,6 +33,7 @@ class LogIn extends Component {
   render() {
     const { email, password } = this.state;
     const { loading } = this.props;
+    const emptyForm = !email || !password ? true : false;
     return (
       <View style={styles.container}>
         <Image style={styles.logo} source={require("~/assets/img/logo.png")} />
@@ -57,13 +58,22 @@ class LogIn extends Component {
         />
         <View style={styles.containerSignIn}>
           <TouchableOpacity
-            style={[styles.buttonSignIn]}
+            disabled={emptyForm}
+            style={
+              emptyForm ? styles.buttonSignInDisabled : styles.buttonSignIn
+            }
             onPress={this.handleFormSubmit}
           >
             {loading ? (
               <ActivityIndicator size="small" color={styles.icon.color} />
             ) : (
-              <Text style={styles.buttonText}>Entrar</Text>
+              <Text
+                style={
+                  emptyForm ? styles.buttonTextDisabled : styles.buttonText
+                }
+              >
+                Entrar
+              </Text>
             )}
           </TouchableOpacity>
         </View>
