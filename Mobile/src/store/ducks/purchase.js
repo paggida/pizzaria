@@ -43,7 +43,7 @@ export default function purchase(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         error: null,
-        history: action.payload.history,
+        history: action.payload.history.filter(item => item.delivered),
       };
     case Types.SUCCESS_ADDRESS:
       return {
@@ -69,7 +69,7 @@ export default function purchase(state = INITIAL_STATE, action) {
  * Action creators
  */
 export const Creators = {
-  requestHistory: () => ({ type: Types.REQUEST_HISTORY }),
+  requestHistory: idUser => ({ type: Types.REQUEST_HISTORY, payload: { idUser } }),
   requestAddress: cep => ({ type: Types.REQUEST_ADDRESS, payload: { cep } }),
   requestSendPurchase: purchase => ({ type: Types.REQUEST_SEND_PURCHASE, payload: { purchase } }),
   requestAddItem: newItem => ({ type: Types.REQUEST_ADD_ITEM, payload: { newItem } }),
