@@ -99,7 +99,7 @@ class NewUser extends Component {
             {loading ? (
               <ActivityIndicator size="small" color={styles.icon.color} />
             ) : (
-              <Text style={emptyForm ? styles.buttonTextDisabled : styles.buttonText}>Criar c</Text>
+              <Text style={emptyForm ? styles.buttonTextDisabled : styles.buttonText}>Criar conta</Text>
             )}
           </TouchableOpacity>
         </View>
