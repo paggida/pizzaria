@@ -14,6 +14,7 @@ export const Types = {
 const INITIAL_STATE = {
   loading: false,
   logged: false,
+  session: {},
   error: null,
 };
 export default function sign(state = INITIAL_STATE, action) {
@@ -23,7 +24,11 @@ export default function sign(state = INITIAL_STATE, action) {
       return { ...state, loading: true };
     case Types.SUCCESS_SIGN_IN:
       return {
-        ...state, loading: false, error: null, logged: true,
+        ...state,
+        loading: false,
+        logged: true,
+        session: action.payload.user,
+        error: null,
       };
     case Types.FAILURE_SIGN:
       return {
@@ -46,7 +51,7 @@ export default function sign(state = INITIAL_STATE, action) {
 export const Creators = {
   requestSignIn: data => ({ type: Types.REQUEST_SIGN_IN, payload: { data } }),
   requestSignUp: newUser => ({ type: Types.REQUEST_SIGN_UP, payload: { newUser } }),
-  successSignIn: () => ({ type: Types.SUCCESS_SIGN_IN }),
+  successSignIn: user => ({ type: Types.SUCCESS_SIGN_IN, payload: { user } }),
   failureSignIn: error => ({ type: Types.FAILURE_SIGN, payload: { error } }),
   cleanError: () => ({ type: Types.CLEAN_ERROR }),
 };

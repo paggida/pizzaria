@@ -6,16 +6,14 @@ import { Creators as SignActions } from '../ducks/sign';
 export function* signIn({ payload: { data } }) {
   try {
     const response = yield call(api.post, '/sessions', data);
-    const {
-      data: { admin },
-    } = yield call(api.get, '/users', {
+    const { data: user } = yield call(api.get, '/users', {
       headers: { Authorization: `bearer ${response.data.token}` },
     });
-    if (admin) {
+    if (user.admin) {
       yield put(SignActions.failureSignIn('Acesso não permitido!'));
     } else {
       yield AsyncStorage.setItem('@Storage_tkn', response.data.token);
-      yield put(SignActions.successSignIn());
+      yield put(SignActions.successSignIn(user));
     }
   } catch (err) {
     // 401 - Usuário ou token existente
@@ -33,8 +31,8 @@ export function* newUser({ payload: { newUser } }) {
     const tkn = yield AsyncStorage.getItem('@Storage_tkn');
     const authorization = tkn ? { headers: { Authorization: `bearer ${tkn}` } } : {};
 
-    yield call(api.post, '/users', newUser, authorization);
-    yield put(SignActions.successSignIn());
+    const { data: user } = yield call(api.post, '/users', newUser, authorization);
+    yield put(SignActions.successSignIn(user));
   } catch (err) {
     // 401 - Usuário ou token existente
     // 400 - Campos em formato inválido
