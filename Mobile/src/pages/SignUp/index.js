@@ -5,23 +5,23 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import LinearGradient from 'react-native-linear-gradient';
-import style from './styles';
+import styles from './styles';
 import { colors } from '~/styles';
 import NewUser from '~/components/NewUser';
 
 const SignUp = ({ navigation, logged, error }) => {
   if (logged) navigation.navigate('Products');
   return (
-    <View style={style.container}>
+    <View style={styles.container}>
       <StatusBar backgroundColor={colors.black} barStyle="light-content" />
-      <Image style={style.background} source={require('~/assets/img/appBackground.png')} />
+      <Image style={styles.background} source={require('~/assets/img/appBackground.png')} />
       <LinearGradient
-        style={style.background}
+        style={styles.background}
         colors={[colors.transparent, colors.black]}
         locations={[0, 0.97]}
       />
-      <View style={style.containerForm}>
-        <View style={style.form}>
+      <View style={styles.containerForm}>
+        <View style={styles.form}>
           <NewUser
             sucessSave={() => {
               navigation.navigate('SignIn');
@@ -29,12 +29,12 @@ const SignUp = ({ navigation, logged, error }) => {
           />
           <TouchableOpacity
             disabled={!!error}
-            style={[style.buttonSignUp]}
+            style={[styles.buttonSignUp]}
             onPress={() => {
               navigation.navigate('SignIn');
             }}
           >
-            <Text style={style.buttonText}>Já tenho login</Text>
+            <Text style={styles.buttonText}>Já tenho login</Text>
           </TouchableOpacity>
         </View>
       </View>

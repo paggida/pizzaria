@@ -5,32 +5,32 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import LinearGradient from 'react-native-linear-gradient';
-import style from './styles';
+import styles from './styles';
 import { colors } from '~/styles';
 import LogIn from '~/components/LogIn';
 
 const SignIn = ({ navigation, logged, error }) => {
   if (logged) navigation.navigate('Products');
   return (
-    <View style={style.container}>
+    <View style={styles.container}>
       <StatusBar backgroundColor={colors.black} barStyle="light-content" />
-      <Image style={style.background} source={require('~/assets/img/appBackground.png')} />
+      <Image style={styles.background} source={require('~/assets/img/appBackground.png')} />
       <LinearGradient
-        style={style.background}
+        style={styles.background}
         colors={[colors.transparent, colors.black]}
         locations={[0, 0.97]}
       />
-      <View style={style.containerForm}>
-        <View style={style.form}>
+      <View style={styles.containerForm}>
+        <View style={styles.form}>
           <LogIn />
           <TouchableOpacity
             disabled={!!error}
-            style={[style.buttonSignUp]}
+            style={[styles.buttonSignUp]}
             onPress={() => {
               navigation.navigate('SignUp');
             }}
           >
-            <Text style={style.buttonText}>Criar conta gratuita</Text>
+            <Text style={styles.buttonText}>Criar conta gratuita</Text>
           </TouchableOpacity>
         </View>
       </View>

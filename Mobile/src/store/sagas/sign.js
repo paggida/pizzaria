@@ -28,12 +28,12 @@ export function* signIn({ payload: { data } }) {
   }
 }
 
-export function* newUser({ payload: { data } }) {
+export function* newUser({ payload: { newUser } }) {
   try {
     const tkn = yield AsyncStorage.getItem('@Storage_tkn');
     const authorization = tkn ? { headers: { Authorization: `bearer ${tkn}` } } : {};
 
-    yield call(api.post, '/users', data, authorization);
+    yield call(api.post, '/users', newUser, authorization);
     yield put(SignActions.successSignIn());
   } catch (err) {
     // 401 - Usuário ou token existente

@@ -4,21 +4,21 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Icons from 'react-native-vector-icons/FontAwesome';
-import style from './styles';
+import styles from './styles';
 import { colors } from '~/styles';
 import HeaderBack from '~/components/HeaderBack';
 
 const ShoppingCart = ({ navigation }) => (
   <Fragment>
     <StatusBar backgroundColor={colors.black} barStyle="light-content" />
-    <Image style={style.background} source={require('~/assets/img/headerBackground.png')} />
+    <Image style={styles.background} source={require('~/assets/img/headerBackground.png')} />
     <HeaderBack title="Carrinho" backPage="Products" price="R$55,00" navigation={navigation} />
     <TouchableOpacity
       onPress={() => {
         navigation.navigate('Products');
       }}
     >
-      <Icons name="cart-plus" size={16} style={style.icon} />
+      <Icons name="cart-plus" size={16} style={styles.icon} />
     </TouchableOpacity>
     <TouchableOpacity
       onPress={() => {

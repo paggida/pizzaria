@@ -3,7 +3,7 @@
  */
 export const Types = {
   REQUEST_SIGN_IN: 'sign/REQUEST_SIGN_IN',
-  REQUEST_NEW_USER: 'sign/REQUEST_NEW_USER',
+  REQUEST_SIGN_UP: 'sign/REQUEST_SIGN_UP',
   SUCCESS_SIGN_IN: 'sign/SUCCESS_SIGN_IN',
   FAILURE_SIGN: 'sign/FAILURE_SIGN',
   CLEAN_ERROR: 'sign/CLEAN_ERROR',
@@ -18,11 +18,13 @@ const INITIAL_STATE = {
 };
 export default function sign(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case Types.REQUEST_NEW_USER:
+    case Types.REQUEST_SIGN_UP:
     case Types.REQUEST_SIGN_IN:
       return { ...state, loading: true };
     case Types.SUCCESS_SIGN_IN:
-      return { ...state, loading: false, logged: true };
+      return {
+        ...state, loading: false, error: null, logged: true,
+      };
     case Types.FAILURE_SIGN:
       return {
         ...state,
@@ -43,7 +45,7 @@ export default function sign(state = INITIAL_STATE, action) {
  */
 export const Creators = {
   requestSignIn: data => ({ type: Types.REQUEST_SIGN_IN, payload: { data } }),
-  requestNewUser: data => ({ type: Types.REQUEST_NEW_USER, payload: { data } }),
+  requestSignUp: newUser => ({ type: Types.REQUEST_SIGN_UP, payload: { newUser } }),
   successSignIn: () => ({ type: Types.SUCCESS_SIGN_IN }),
   failureSignIn: error => ({ type: Types.FAILURE_SIGN, payload: { error } }),
   cleanError: () => ({ type: Types.CLEAN_ERROR }),

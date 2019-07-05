@@ -3,14 +3,14 @@ import {
   Text, Image, StatusBar, TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import style from './styles';
+import styles from './styles';
 import { colors } from '~/styles';
 import HeaderBack from '~/components/HeaderBack';
 
 const Purchase = ({ navigation }) => (
   <Fragment>
     <StatusBar backgroundColor={colors.black} barStyle="light-content" />
-    <Image style={style.background} source={require('~/assets/img/headerBackground.png')} />
+    <Image style={styles.background} source={require('~/assets/img/headerBackground.png')} />
     <HeaderBack
       title="Realizar pedido"
       backPage="ShoppingCart"

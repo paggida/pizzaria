@@ -2,34 +2,64 @@
  * Action Types
  */
 export const Types = {
-  REQUEST_LOAD_PURCHASE: 'purchase/REQUEST_LOAD_PURCHASE',
-  REQUEST_END_PURCHASE: 'purchase/REQUEST_END_PURCHASE',
-  LOADING_PURCHASE: 'purchase/LOADING_PURCHASE',
-  DELIVERED_PURCHASE: 'purchase/DELIVERED_PURCHASE',
-  FAILURE_PURCHASE: 'purchase/FAILURE_PURCHASE',
+  REQUEST_HISTORY: 'purchase/REQUEST_HISTORY',
+  REQUEST_ADDRESS: 'purchase/REQUEST_ADDRESS',
+  REQUEST_SEND_PURCHASE: 'purchase/REQUEST_SEND_PURCHASE',
+  REQUEST_ADD_ITEM: 'purchase/REQUEST_ADD_ITEM',
+  REQUEST_REMOVE_ITEM: 'purchase/REQUEST_REMOVE_ITEM',
+  SUCCESS_ADDRESS: 'purchase/SUCCESS_ADDRESS',
+  SUCCESS_HISTORY: 'purchase/SUCCESS_HISTORY',
+  SUCCESS_PURCHASE: 'purchase/SUCCESS_PURCHASE',
+  FAILURE_REQUEST: 'purchase/FAILURE_REQUEST',
 };
 /**
  * Reducer
  */
 const INITIAL_STATE = {
   loading: false,
-  data: [],
-  delivered: false,
+  address: {},
+  history: [],
+  shoppingCart: [],
   error: null,
 };
 export default function purchase(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case Types.REQUEST_LOAD_PURCHASE:
-    case Types.REQUEST_END_PURCHASE:
+    case Types.REQUEST_HISTORY:
+    case Types.REQUEST_ADDRESS:
+    case Types.REQUEST_SEND_PURCHASE:
       return { ...state, loading: true };
-    case Types.LOADING_PURCHASE:
-      return { ...state, loading: false, data: action.payload.data };
-    case Types.DELIVERED_PURCHASE:
+    case Types.REQUEST_ADD_ITEM:
       return {
         ...state,
-        delivered: action.payload.delivered,
+        shoppingCart: [...state.shoppingCart, action.payload.newItem],
       };
-    case Types.FAILURE_PURCHASE:
+    case Types.REQUEST_REMOVE_ITEM:
+      return {
+        ...state,
+        shoppingCart: state.shoppingCart.filter(item => item.id !== action.payload.idItem),
+      };
+    case Types.SUCCESS_HISTORY:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        history: action.payload.history,
+      };
+    case Types.SUCCESS_ADDRESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        address: action.payload.address,
+      };
+    case Types.SUCCESS_PURCHASE:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        shoppingCart: [],
+      };
+    case Types.FAILURE_REQUEST:
       return { ...state, loading: false, error: action.payload.error };
     default:
       return state;
@@ -39,9 +69,13 @@ export default function purchase(state = INITIAL_STATE, action) {
  * Action creators
  */
 export const Creators = {
-  requestLoadingPurchase: () => ({ type: Types.REQUEST_LOAD_PURCHASE }),
-  requestEndingPurchase: id => ({ type: Types.REQUEST_END_PURCHASE, payload: { id } }),
-  loadingPurchase: data => ({ type: Types.LOADING_PURCHASE, payload: { data } }),
-  deliveredPurchase: delivered => ({ type: Types.DELIVERED_PURCHASE, payload: { delivered } }),
-  failurePurchase: error => ({ type: Types.FAILURE_PURCHASE, payload: { error } }),
+  requestHistory: () => ({ type: Types.REQUEST_HISTORY }),
+  requestAddress: cep => ({ type: Types.REQUEST_ADDRESS, payload: { cep } }),
+  requestSendPurchase: purchase => ({ type: Types.REQUEST_SEND_PURCHASE, payload: { purchase } }),
+  requestAddItem: newItem => ({ type: Types.REQUEST_ADD_ITEM, payload: { newItem } }),
+  requestRemoveItem: idItem => ({ type: Types.REQUEST_REMOVE_ITEM, payload: { idItem } }),
+  successAddress: address => ({ type: Types.SUCCESS_ADDRESS, payload: { address } }),
+  successHistory: history => ({ type: Types.SUCCESS_HISTORY, payload: { history } }),
+  successPurchase: () => ({ type: Types.SUCCESS_PURCHASE }),
+  failureRequest: error => ({ type: Types.FAILURE_REQUEST, payload: { error } }),
 };

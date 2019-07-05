@@ -18,7 +18,7 @@ class NewUser extends Component {
   };
 
   static propTypes = {
-    requestNewUser: PropTypes.func.isRequired,
+    requestSignUp: PropTypes.func.isRequired,
     cleanError: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
     error: PropTypes.string,
@@ -29,12 +29,12 @@ class NewUser extends Component {
   };
 
   handleFormSubmit = () => {
-    const { requestNewUser } = this.props;
+    const { requestSignUp } = this.props;
     const {
       name, email, password, passwordConfirmed,
     } = this.state;
 
-    requestNewUser({
+    requestSignUp({
       name,
       email,
       password,
