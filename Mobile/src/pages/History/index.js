@@ -15,7 +15,6 @@ const HeaderBackgroundImg = require('~/assets/img/headerBackground.png');
 class History extends Component {
   static propTypes = {
     idUser: PropTypes.number.isRequired,
-    navigation: PropTypes.shape().isRequired,
     requestHistory: PropTypes.func.isRequired,
     history: PropTypes.arrayOf(
       PropTypes.shape({
@@ -39,22 +38,13 @@ class History extends Component {
 
   render() {
     const {
-      navigation,
-      requestHistory,
-      idUser,
-      history,
-      loading,
-      error,
-    } = this.props;
+ requestHistory, idUser, history, loading, error 
+} = this.props;
     return (
       <Fragment>
         <StatusBar backgroundColor={colors.black} barStyle="light-content" />
         <Image style={styles.background} source={HeaderBackgroundImg} />
-        <HeaderBack
-          title="Meus Pedidos"
-          backPage="Products"
-          navigation={navigation}
-        />
+        <HeaderBack title="Meus Pedidos" backPage="Products" />
         {!history.length || error ? (
           <MistakeBox error={error} message="Histórico vazio" />
         ) : (

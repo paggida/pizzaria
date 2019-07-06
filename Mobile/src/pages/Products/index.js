@@ -14,7 +14,6 @@ const HeaderBackgroundImg = require('~/assets/img/headerBackground.png');
 
 class Products extends Component {
   static propTypes = {
-    navigation: PropTypes.shape().isRequired,
     requestProducts: PropTypes.func.isRequired,
     products: PropTypes.arrayOf(
       PropTypes.shape({
@@ -40,17 +39,13 @@ class Products extends Component {
 
   render() {
     const {
-      navigation,
-      requestProducts,
-      products,
-      loading,
-      error,
-    } = this.props;
+ requestProducts, products, loading, error 
+} = this.props;
     return (
       <Fragment>
         <StatusBar backgroundColor={colors.black} barStyle="light-content" />
         <Image style={styles.background} source={HeaderBackgroundImg} />
-        <HeaderActions title="Pizzaria Don Juan" navigation={navigation} />
+        <HeaderActions title="Pizzaria Don Juan" />
         {!products.length || error ? (
           <MistakeBox message="Estamos temporariamente indisponíveis." />
         ) : (
@@ -58,7 +53,7 @@ class Products extends Component {
             data={products}
             keyExtractor={item => String(item.id)}
             renderItem={({ item }) => (
-              <Product item={item} navigation={navigation} />
+              <Product item={item} targetPage="Types" />
             )}
             onRefresh={requestProducts}
             refreshing={loading}

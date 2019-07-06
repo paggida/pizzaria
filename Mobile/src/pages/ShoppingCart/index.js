@@ -14,12 +14,7 @@ const ShoppingCart = ({ navigation }) => (
   <Fragment>
     <StatusBar backgroundColor={colors.black} barStyle="light-content" />
     <Image style={styles.background} source={HeaderBackgroundImg} />
-    <HeaderBack
-      title="Carrinho"
-      backPage="Products"
-      price="R$55,00"
-      navigation={navigation}
-    />
+    <HeaderBack title="Carrinho" backPage="Products" price="R$55,00" />
     <TouchableOpacity
       onPress={() => {
         navigation.navigate('Products');

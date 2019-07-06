@@ -17,7 +17,6 @@ const Purchase = ({ navigation }) => (
       title="Realizar pedido"
       backPage="ShoppingCart"
       price="R$55,00"
-      navigation={navigation}
     />
     <TouchableOpacity
       onPress={() => {

@@ -1,25 +1,32 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
-  Text, View, Image, TouchableOpacity,
+ Text, View, Image, TouchableOpacity 
 } from 'react-native';
+import { withNavigation } from 'react-navigation';
 import Icons from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
+import { Creators as PurchaseActions } from '~/store/ducks/purchase';
 import styles from './styles';
 
 const Product = ({
   item: {
+    id,
     name,
     description,
     preparation,
     file: { url },
   },
   navigation,
+  targetPage,
+  requestSelectProduct,
 }) => (
   <TouchableOpacity
     style={styles.container}
     onPress={() => {
-      console.tron.log(`Vc clicou! ${name}`);
-      // navigation.navigate('ShoppingCart');
+      requestSelectProduct(id);
+      navigation.navigate(targetPage);
     }}
   >
     <View style={styles.containerRow}>
@@ -37,7 +44,10 @@ const Product = ({
 );
 
 Product.propTypes = {
+  requestSelectProduct: PropTypes.func.isRequired,
+  targetPage: PropTypes.string.isRequired,
   item: PropTypes.shape({
+    id: PropTypes.number,
     name: PropTypes.string,
     description: PropTypes.string,
     preparation: PropTypes.number,
@@ -50,4 +60,10 @@ Product.propTypes = {
   }).isRequired,
 };
 
-export default Product;
+const mapDispachToProps = dispatch => bindActionCreators(PurchaseActions, dispatch);
+export default withNavigation(
+  connect(
+    null,
+    mapDispachToProps,
+  )(Product),
+);

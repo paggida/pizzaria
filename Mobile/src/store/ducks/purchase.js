@@ -7,6 +7,9 @@ export const Types = {
   REQUEST_SEND_PURCHASE: 'purchase/REQUEST_SEND_PURCHASE',
   REQUEST_ADD_ITEM: 'purchase/REQUEST_ADD_ITEM',
   REQUEST_REMOVE_ITEM: 'purchase/REQUEST_REMOVE_ITEM',
+  REQUEST_SELECT_PRODUCT: 'purchase/REQUEST_SELECT_PRODUCT',
+  REQUEST_SELECT_TYPE: 'purchase/REQUEST_SELECT_TYPE',
+  REQUEST_SELECT_SIZE: 'purchase/REQUEST_SELECT_SIZE',
   SUCCESS_ADDRESS: 'purchase/SUCCESS_ADDRESS',
   SUCCESS_HISTORY: 'purchase/SUCCESS_HISTORY',
   SUCCESS_PURCHASE: 'purchase/SUCCESS_PURCHASE',
@@ -20,6 +23,13 @@ const INITIAL_STATE = {
   address: {},
   history: [],
   shoppingCart: [],
+  purchaseItem: {
+    id: 0,
+    product_id: 0,
+    type_id: 0,
+    size_id: 0,
+    price: 0,
+  },
   error: null,
 };
 export default function purchase(state = INITIAL_STATE, action) {
@@ -31,12 +41,53 @@ export default function purchase(state = INITIAL_STATE, action) {
     case Types.REQUEST_ADD_ITEM:
       return {
         ...state,
-        shoppingCart: [...state.shoppingCart, action.payload.newItem],
+        shoppingCart: [
+          ...state.shoppingCart,
+          { ...state.purchaseItem, id: state.shoppingCart.length + 1 },
+        ],
+        purchaseItem: {
+          id: 0,
+          product_id: 0,
+          type_id: 0,
+          size_id: 0,
+          price: 0,
+        },
       };
     case Types.REQUEST_REMOVE_ITEM:
       return {
         ...state,
-        shoppingCart: state.shoppingCart.filter(item => item.id !== action.payload.idItem),
+        shoppingCart: state.shoppingCart.filter(
+          item => item.id !== action.payload.idItem,
+        ),
+      };
+    case Types.REQUEST_SELECT_PRODUCT:
+      return {
+        ...state,
+        purchaseItem: {
+          id: 0,
+          product_id: action.payload.idProduct,
+          type_id: 0,
+          size_id: 0,
+          price: 0,
+        },
+      };
+    case Types.REQUEST_SELECT_TYPE:
+      return {
+        ...state,
+        purchaseItem: {
+          ...state.purchaseItem,
+          type_id: action.payload.data.idType,
+          price: action.payload.data.baseValue,
+        },
+      };
+    case Types.REQUEST_SELECT_SIZE:
+      return {
+        ...state,
+        purchaseItem: {
+          ...state.purchaseItem,
+          size_id: action.payload.idSize,
+          price: state.purchaseItem.price * action.payload.data.baseIndex,
+        },
       };
     case Types.SUCCESS_HISTORY:
       return {
@@ -69,13 +120,43 @@ export default function purchase(state = INITIAL_STATE, action) {
  * Action creators
  */
 export const Creators = {
-  requestHistory: idUser => ({ type: Types.REQUEST_HISTORY, payload: { idUser } }),
+  requestHistory: idUser => ({
+    type: Types.REQUEST_HISTORY,
+    payload: { idUser },
+  }),
   requestAddress: cep => ({ type: Types.REQUEST_ADDRESS, payload: { cep } }),
-  requestSendPurchase: purchase => ({ type: Types.REQUEST_SEND_PURCHASE, payload: { purchase } }),
-  requestAddItem: newItem => ({ type: Types.REQUEST_ADD_ITEM, payload: { newItem } }),
-  requestRemoveItem: idItem => ({ type: Types.REQUEST_REMOVE_ITEM, payload: { idItem } }),
-  successAddress: address => ({ type: Types.SUCCESS_ADDRESS, payload: { address } }),
-  successHistory: history => ({ type: Types.SUCCESS_HISTORY, payload: { history } }),
+  requestSendPurchase: purchase => ({
+    type: Types.REQUEST_SEND_PURCHASE,
+    payload: { purchase },
+  }),
+  requestAddItem: newItem => ({
+    type: Types.REQUEST_ADD_ITEM,
+    payload: { newItem },
+  }),
+  requestRemoveItem: idItem => ({
+    type: Types.REQUEST_REMOVE_ITEM,
+    payload: { idItem },
+  }),
+  requestSelectProduct: idProduct => ({
+    type: Types.REQUEST_SELECT_PRODUCT,
+    payload: { idProduct },
+  }),
+  requestSelectType: data => ({
+    type: Types.REQUEST_SELECT_TYPE,
+    payload: { data },
+  }),
+  requestSelectSize: data => ({
+    type: Types.REQUEST_SELECT_SIZE,
+    payload: { data },
+  }),
+  successAddress: address => ({
+    type: Types.SUCCESS_ADDRESS,
+    payload: { address },
+  }),
+  successHistory: history => ({
+    type: Types.SUCCESS_HISTORY,
+    payload: { history },
+  }),
   successPurchase: () => ({ type: Types.SUCCESS_PURCHASE }),
   failureRequest: error => ({ type: Types.FAILURE_REQUEST, payload: { error } }),
 };

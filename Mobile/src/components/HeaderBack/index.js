@@ -1,11 +1,12 @@
 import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
+import { withNavigation } from 'react-navigation';
 import Icons from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
 import styles from './styles';
 
 const HeaderBack = ({
-  title, backPage, navigation, price,
+ title, backPage, navigation, price 
 }) => (
   <View style={styles.container}>
     <TouchableOpacity
@@ -36,4 +37,4 @@ HeaderBack.defaultProps = {
   price: '',
 };
 
-export default HeaderBack;
+export default withNavigation(HeaderBack);

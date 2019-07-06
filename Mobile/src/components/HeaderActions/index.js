@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
+import { withNavigation } from 'react-navigation';
 import Icons from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
 import styles from './styles';
@@ -27,9 +28,10 @@ const HeaderActions = ({ title, navigation }) => (
 );
 
 HeaderActions.propTypes = {
+  title: PropTypes.string.isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
   }).isRequired,
 };
 
-export default HeaderActions;
+export default withNavigation(HeaderActions);
