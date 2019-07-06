@@ -3,10 +3,12 @@ import { Text, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 
+const LogoGrayImg = require('~/assets/img/logoGray.png');
+
 const MistakeBox = ({ error, message }) => (
   <View style={styles.containerRow}>
     <View style={styles.container}>
-      <Image style={styles.logo} source={require('~/assets/img/logoGray.png')} />
+      <Image style={styles.logo} source={LogoGrayImg} />
       {error ? (
         <Text style={styles.text}>{error}</Text>
       ) : (

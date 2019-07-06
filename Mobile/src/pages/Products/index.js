@@ -10,6 +10,8 @@ import HeaderActions from '~/components/HeaderActions';
 import MistakeBox from '~/components/MistakeBox';
 import Product from '~/components/Product';
 
+const HeaderBackgroundImg = require('~/assets/img/headerBackground.png');
+
 class Products extends Component {
   static propTypes = {
     navigation: PropTypes.shape().isRequired,
@@ -47,10 +49,7 @@ class Products extends Component {
     return (
       <Fragment>
         <StatusBar backgroundColor={colors.black} barStyle="light-content" />
-        <Image
-          style={styles.background}
-          source={require('~/assets/img/headerBackground.png')}
-        />
+        <Image style={styles.background} source={HeaderBackgroundImg} />
         <HeaderActions title="Pizzaria Don Juan" navigation={navigation} />
         {!products.length || error ? (
           <MistakeBox message="Estamos temporariamente indisponíveis." />

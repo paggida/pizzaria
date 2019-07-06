@@ -10,6 +10,8 @@ import HeaderBack from '~/components/HeaderBack';
 import MistakeBox from '~/components/MistakeBox';
 import Purchase from '~/components/Purchase';
 
+const HeaderBackgroundImg = require('~/assets/img/headerBackground.png');
+
 class History extends Component {
   static propTypes = {
     idUser: PropTypes.number.isRequired,
@@ -47,10 +49,7 @@ class History extends Component {
     return (
       <Fragment>
         <StatusBar backgroundColor={colors.black} barStyle="light-content" />
-        <Image
-          style={styles.background}
-          source={require('~/assets/img/headerBackground.png')}
-        />
+        <Image style={styles.background} source={HeaderBackgroundImg} />
         <HeaderBack
           title="Meus Pedidos"
           backPage="Products"

@@ -2,12 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  Text, Image, View, TextInput, TouchableOpacity, ActivityIndicator,
+  Text,
+  Image,
+  View,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Alert from 'react-native-awesome-alerts';
 import { Creators as SignActions } from '~/store/ducks/sign';
 import styles from './styles';
+
+const LogoImg = require('~/assets/img/logo.png');
 
 class NewUser extends Component {
   state = {
@@ -31,8 +38,8 @@ class NewUser extends Component {
   handleFormSubmit = () => {
     const { requestSignUp } = this.props;
     const {
-      name, email, password, passwordConfirmed,
-    } = this.state;
+ name, email, password, passwordConfirmed 
+} = this.state;
 
     requestSignUp({
       name,
@@ -44,18 +51,18 @@ class NewUser extends Component {
 
   render() {
     const {
-      name, email, password, passwordConfirmed,
-    } = this.state;
+ name, email, password, passwordConfirmed 
+} = this.state;
     const { loading, error, cleanError } = this.props;
     const emptyForm = !!(!name || !email || !password || !passwordConfirmed);
 
     return (
       <View style={styles.container}>
-        <Image style={styles.logo} source={require('~/assets/img/logo.png')} />
+        <Image style={styles.logo} source={LogoImg} />
         <TextInput
           style={styles.input}
           value={name}
-          onChangeText={name => this.setState({ name })}
+          onChangeText={nameChange => this.setState({ name: nameChange })}
           autoCorrect={false}
           autoCapitalize="none"
           placeholder="Nome completo"
@@ -64,7 +71,7 @@ class NewUser extends Component {
         <TextInput
           style={styles.input}
           value={email}
-          onChangeText={email => this.setState({ email })}
+          onChangeText={emailChange => this.setState({ email: emailChange })}
           autoCorrect={false}
           autoCapitalize="none"
           placeholder="Seu e-mail"
@@ -73,7 +80,8 @@ class NewUser extends Component {
         <TextInput
           style={styles.input}
           value={password}
-          onChangeText={password => this.setState({ password })}
+          onChangeText={passwordChange => this.setState({ password: passwordChange })
+          }
           secureTextEntry
           autoCorrect={false}
           autoCapitalize="none"
@@ -83,7 +91,8 @@ class NewUser extends Component {
         <TextInput
           style={styles.input}
           value={passwordConfirmed}
-          onChangeText={passwordConfirmed => this.setState({ passwordConfirmed })}
+          onChangeText={passwordConfirmedChange => this.setState({ passwordConfirmed: passwordConfirmedChange })
+          }
           secureTextEntry
           autoCorrect={false}
           autoCapitalize="none"
@@ -93,13 +102,21 @@ class NewUser extends Component {
         <View style={styles.containerNewUser}>
           <TouchableOpacity
             disabled={emptyForm}
-            style={emptyForm ? styles.buttonNewUserDisabled : styles.buttonNewUser}
+            style={
+              emptyForm ? styles.buttonNewUserDisabled : styles.buttonNewUser
+            }
             onPress={this.handleFormSubmit}
           >
             {loading ? (
               <ActivityIndicator size="small" color={styles.icon.color} />
             ) : (
-              <Text style={emptyForm ? styles.buttonTextDisabled : styles.buttonText}>Criar conta</Text>
+              <Text
+                style={
+                  emptyForm ? styles.buttonTextDisabled : styles.buttonText
+                }
+              >
+                Criar conta
+              </Text>
             )}
           </TouchableOpacity>
         </View>

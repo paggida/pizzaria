@@ -1,5 +1,7 @@
 import React from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+import {
+  Text, View, Image, TouchableOpacity,
+} from 'react-native';
 import Icons from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
 import styles from './styles';
@@ -9,15 +11,15 @@ const Product = ({
     name,
     description,
     preparation,
-    file: { url }
+    file: { url },
   },
-  navigation
+  navigation,
 }) => (
   <TouchableOpacity
     style={styles.container}
     onPress={() => {
       console.tron.log(`Vc clicou! ${name}`);
-      //navigation.navigate('ShoppingCart');
+      // navigation.navigate('ShoppingCart');
     }}
   >
     <View style={styles.containerRow}>
@@ -40,12 +42,12 @@ Product.propTypes = {
     description: PropTypes.string,
     preparation: PropTypes.number,
     file: PropTypes.shape({
-      url: PropTypes.string
-    })
+      url: PropTypes.string,
+    }),
   }).isRequired,
   navigation: PropTypes.shape({
-    navigate: PropTypes.func
-  }).isRequired
+    navigate: PropTypes.func,
+  }).isRequired,
 };
 
 export default Product;

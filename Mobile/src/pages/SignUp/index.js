@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  Text, View, StatusBar, Image, TouchableOpacity,
+ Text, View, StatusBar, Image, TouchableOpacity 
 } from 'react-native';
 import PropTypes from 'prop-types';
 import LinearGradient from 'react-native-linear-gradient';
@@ -9,12 +9,14 @@ import styles from './styles';
 import { colors } from '~/styles';
 import NewUser from '~/components/NewUser';
 
+const AppBackgroundImg = require('~/assets/img/appBackground.png');
+
 const SignUp = ({ navigation, logged, error }) => {
   if (logged) navigation.navigate('Products');
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={colors.black} barStyle="light-content" />
-      <Image style={styles.background} source={require('~/assets/img/appBackground.png')} />
+      <Image style={styles.background} source={AppBackgroundImg} />
       <LinearGradient
         style={styles.background}
         colors={[colors.transparent, colors.black]}
