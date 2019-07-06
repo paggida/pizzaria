@@ -6,12 +6,16 @@ import { Creators as PurchaseActions } from '../ducks/purchase';
 export function* requestHistory({ payload: { idUser } }) {
   try {
     const tkn = yield AsyncStorage.getItem('@Storage_tkn');
-    const authorization = tkn ? { headers: { Authorization: `bearer ${tkn}` } } : {};
+    const authorization = tkn
+      ? { headers: { Authorization: `bearer ${tkn}` } }
+      : {};
 
     const { data } = yield call(api.get, `/purchases/${idUser}`, authorization);
     yield put(PurchaseActions.successHistory(data));
   } catch (err) {
-    yield put(PurchaseActions.failureRequest('Erro no acesso da API!'));
+    yield put(
+      PurchaseActions.failureRequest('Ops... Infelizmente tivemos um problema!'),
+    );
   }
 }
 export function* requestAddress() {

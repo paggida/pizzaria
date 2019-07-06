@@ -37,27 +37,35 @@ class History extends Component {
 
   render() {
     const {
-      navigation, requestHistory, history, loading, error,
+      navigation,
+      requestHistory,
+      idUser,
+      history,
+      loading,
+      error,
     } = this.props;
     return (
       <Fragment>
         <StatusBar backgroundColor={colors.black} barStyle="light-content" />
-        <Image style={styles.background} source={require('~/assets/img/headerBackground.png')} />
-        <HeaderBack title="Meus Pedidos" backPage="Products" navigation={navigation} />
+        <Image
+          style={styles.background}
+          source={require('~/assets/img/headerBackground.png')}
+        />
+        <HeaderBack
+          title="Meus Pedidos"
+          backPage="Products"
+          navigation={navigation}
+        />
         {!history.length || error ? (
           <MistakeBox error={error} message="Histórico vazio" />
         ) : (
           <FlatList
             data={history}
             keyExtractor={item => String(item.id)}
-            renderItem={({ item }) => (
-              <Purchase
-                purchase={String(item.id)}
-                fromNow={item.fromNow}
-                formatFullValue={item.formatFullValue}
-              />
-            )}
-            onRefresh={requestHistory}
+            renderItem={({ item }) => <Purchase item={item} />}
+            onRefresh={() => {
+              requestHistory(idUser);
+            }}
             refreshing={loading}
           />
         )}

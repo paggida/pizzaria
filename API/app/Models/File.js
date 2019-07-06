@@ -8,8 +8,8 @@ class File extends Model {
     return ['url']
   }
 
-  getUrl ({ name }) {
-    return `${Env.get('APP_URL')}/files/${name}`
+  getUrl ({ id }) {
+    return `${Env.get('APP_URL')}/files/${id}`
   }
 }
 

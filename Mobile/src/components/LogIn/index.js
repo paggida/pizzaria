@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  Text, Image, View, TextInput, TouchableOpacity, ActivityIndicator,
+  Text,
+  Image,
+  View,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator
 } from 'react-native';
 import Alert from 'react-native-awesome-alerts';
 import PropTypes from 'prop-types';
@@ -12,24 +17,24 @@ import styles from './styles';
 class LogIn extends Component {
   state = {
     email: '',
-    password: '',
+    password: ''
   };
 
   static propTypes = {
     requestSignIn: PropTypes.func.isRequired,
     cleanError: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
-    error: PropTypes.string,
+    error: PropTypes.string
   };
 
   static defaultProps = {
-    error: '',
+    error: ''
   };
 
   handleFormSubmit = () => {
     const { email, password } = this.state;
     const { requestSignIn } = this.props;
-    requestSignIn({ email, password });
+    requestSignIn({ email: email.trim(), password });
   };
 
   render() {
@@ -62,13 +67,21 @@ class LogIn extends Component {
         <View style={styles.containerSignIn}>
           <TouchableOpacity
             disabled={emptyForm}
-            style={emptyForm ? styles.buttonSignInDisabled : styles.buttonSignIn}
+            style={
+              emptyForm ? styles.buttonSignInDisabled : styles.buttonSignIn
+            }
             onPress={this.handleFormSubmit}
           >
             {loading ? (
               <ActivityIndicator size="small" color={styles.icon.color} />
             ) : (
-              <Text style={emptyForm ? styles.buttonTextDisabled : styles.buttonText}>Entrar</Text>
+              <Text
+                style={
+                  emptyForm ? styles.buttonTextDisabled : styles.buttonText
+                }
+              >
+                Entrar
+              </Text>
             )}
           </TouchableOpacity>
         </View>
@@ -91,10 +104,10 @@ class LogIn extends Component {
 
 const mapStateToProps = state => ({
   loading: state.sign.loading,
-  error: state.sign.error,
+  error: state.sign.error
 });
 const mapDispachToProps = dispatch => bindActionCreators(SignActions, dispatch);
 export default connect(
   mapStateToProps,
-  mapDispachToProps,
+  mapDispachToProps
 )(LogIn);
