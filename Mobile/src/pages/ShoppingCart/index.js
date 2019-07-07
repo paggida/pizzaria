@@ -1,23 +1,17 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import {
-  Image,
-  StatusBar,
-  FlatList,
-  TouchableOpacity,
-  Text,
-} from 'react-native';
+import { Image, StatusBar, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
-import Icons from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
 import { colors } from '~/styles';
 import HeaderBack from '~/components/HeaderBack';
 import MistakeBox from '~/components/MistakeBox';
 import ItemPurchase from '~/components/ItemPurchase';
+import FooterActions from '~/components/FooterActions';
 
 const HeaderBackgroundImg = require('~/assets/img/headerBackground.png');
 
-const ShoppingCart = ({ shoppingCart, sumPrice, navigation }) => (
+const ShoppingCart = ({ shoppingCart, sumPrice }) => (
   <Fragment>
     <StatusBar backgroundColor={colors.black} barStyle={colors.barStyle} />
     <Image style={styles.background} source={HeaderBackgroundImg} />
@@ -29,20 +23,7 @@ const ShoppingCart = ({ shoppingCart, sumPrice, navigation }) => (
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => <ItemPurchase item={item} />}
         />
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Products');
-          }}
-        >
-          <Icons name="cart-plus" size={16} style={styles.icon} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Purchase');
-          }}
-        >
-          <Text>{'REALIZAR PEDIDO >'}</Text>
-        </TouchableOpacity>
+        <FooterActions />
       </Fragment>
     ) : (
       <MistakeBox message="Carrinho vazio" />
@@ -53,9 +34,6 @@ const ShoppingCart = ({ shoppingCart, sumPrice, navigation }) => (
 ShoppingCart.propTypes = {
   shoppingCart: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   sumPrice: PropTypes.string.isRequired,
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func,
-  }).isRequired,
 };
 
 /**
