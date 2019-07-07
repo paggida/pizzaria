@@ -30,6 +30,16 @@ const styles = StyleSheet.create({
     padding: metrics.basePadding * 1.2,
     backgroundColor: colors.secondary,
   },
+  newPurchase: {
+    borderRadius: metrics.baseRadius * 10,
+    backgroundColor: colors.warning,
+    padding: metrics.basePadding / 1.3,
+    position: 'absolute',
+    alignSelf: 'flex-end',
+  },
+  hidden: {
+    backgroundColor: colors.transparent,
+  },
   icon: {
     color: colors.white,
   },
