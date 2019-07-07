@@ -42,7 +42,7 @@ class History extends Component {
 } = this.props;
     return (
       <Fragment>
-        <StatusBar backgroundColor={colors.black} barStyle="light-content" />
+        <StatusBar backgroundColor={colors.black} barStyle={colors.barStyle} />
         <Image style={styles.background} source={HeaderBackgroundImg} />
         <HeaderBack title="Meus Pedidos" backPage="Products" />
         {!history.length || error ? (

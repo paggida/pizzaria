@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 11,
     color: colors.text,
-    // borderWidth: 1,
     lineHeight: 14,
     marginBottom: metrics.baseMargin / 2,
   },

@@ -10,11 +10,11 @@ import HeaderBack from '~/components/HeaderBack';
 
 const HeaderBackgroundImg = require('~/assets/img/headerBackground.png');
 
-const ShoppingCart = ({ navigation }) => (
+const Sizes = ({ navigation }) => (
   <Fragment>
     <StatusBar backgroundColor={colors.black} barStyle={colors.barStyle} />
     <Image style={styles.background} source={HeaderBackgroundImg} />
-    <HeaderBack title="Carrinho" backPage="Products" price="R$55,00" />
+    <HeaderBack title="Selecione um tamanho" backPage="Types" />
     <TouchableOpacity
       onPress={() => {
         navigation.navigate('Products');
@@ -32,10 +32,10 @@ const ShoppingCart = ({ navigation }) => (
   </Fragment>
 );
 
-ShoppingCart.propTypes = {
+Sizes.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
   }).isRequired,
 };
 
-export default ShoppingCart;
+export default Sizes;

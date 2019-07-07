@@ -15,7 +15,7 @@ const HeaderBack = ({
         navigation.navigate(backPage);
       }}
     >
-      <Icons name="chevron-left" size={16} style={styles.icon} />
+      <Icons name="chevron-left" size={18} style={styles.icon} />
     </TouchableOpacity>
     <View style={styles.containerTitle}>
       <Text style={styles.title}>{title}</Text>

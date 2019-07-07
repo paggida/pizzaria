@@ -15,15 +15,7 @@ const HeaderBackgroundImg = require('~/assets/img/headerBackground.png');
 class Products extends Component {
   static propTypes = {
     requestProducts: PropTypes.func.isRequired,
-    products: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        name: PropTypes.string,
-        description: PropTypes.string,
-        preparation: PropTypes.number,
-        file_id: PropTypes.number,
-      }),
-    ).isRequired,
+    products: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     loading: PropTypes.bool.isRequired,
     error: PropTypes.string,
   };
@@ -43,7 +35,7 @@ class Products extends Component {
 } = this.props;
     return (
       <Fragment>
-        <StatusBar backgroundColor={colors.black} barStyle="light-content" />
+        <StatusBar backgroundColor={colors.black} barStyle={colors.barStyle} />
         <Image style={styles.background} source={HeaderBackgroundImg} />
         <HeaderActions title="Pizzaria Don Juan" />
         {!products.length || error ? (

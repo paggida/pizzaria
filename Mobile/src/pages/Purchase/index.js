@@ -11,7 +11,7 @@ const HeaderBackgroundImg = require('~/assets/img/headerBackground.png');
 
 const Purchase = ({ navigation }) => (
   <Fragment>
-    <StatusBar backgroundColor={colors.black} barStyle="light-content" />
+    <StatusBar backgroundColor={colors.black} barStyle={colors.barStyle} />
     <Image style={styles.background} source={HeaderBackgroundImg} />
     <HeaderBack
       title="Realizar pedido"

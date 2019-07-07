@@ -1,4 +1,6 @@
 export default {
+  barStyle: 'light-content',
+
   transparent: 'transparent',
   white: '#FFF',
   light: '#cccccc',

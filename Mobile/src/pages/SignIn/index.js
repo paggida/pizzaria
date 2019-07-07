@@ -15,7 +15,7 @@ const SignIn = ({ navigation, logged, error }) => {
   if (logged) navigation.navigate('Products');
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor={colors.black} barStyle="light-content" />
+      <StatusBar backgroundColor={colors.black} barStyle={colors.barStyle} />
       <Image style={styles.background} source={AppBackgroundImg} />
       <LinearGradient
         style={styles.background}
