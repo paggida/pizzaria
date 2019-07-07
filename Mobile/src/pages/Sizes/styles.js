@@ -1,12 +1,13 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '~/styles';
+import { metrics } from '~/styles';
 
 export const styles = StyleSheet.create({
   background: {
     position: 'absolute',
   },
-  icon: {
-    color: colors.white,
+  columnWrapper: {
+    marginHorizontal: metrics.baseMargin,
+    justifyContent: 'space-between',
   },
 });
 

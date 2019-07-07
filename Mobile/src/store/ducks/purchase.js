@@ -9,7 +9,6 @@ export const Types = {
   REQUEST_REMOVE_ITEM: 'purchase/REQUEST_REMOVE_ITEM',
   REQUEST_SELECT_PRODUCT: 'purchase/REQUEST_SELECT_PRODUCT',
   REQUEST_SELECT_TYPE: 'purchase/REQUEST_SELECT_TYPE',
-  REQUEST_SELECT_SIZE: 'purchase/REQUEST_SELECT_SIZE',
   SUCCESS_ADDRESS: 'purchase/SUCCESS_ADDRESS',
   SUCCESS_HISTORY: 'purchase/SUCCESS_HISTORY',
   SUCCESS_PURCHASE: 'purchase/SUCCESS_PURCHASE',
@@ -24,10 +23,8 @@ const INITIAL_STATE = {
   history: [],
   shoppingCart: [],
   purchaseItem: {
-    id: 0,
     product_id: 0,
     type_id: 0,
-    size_id: 0,
     price: 0,
   },
   error: null,
@@ -43,13 +40,16 @@ export default function purchase(state = INITIAL_STATE, action) {
         ...state,
         shoppingCart: [
           ...state.shoppingCart,
-          { ...state.purchaseItem, id: state.shoppingCart.length + 1 },
+          {
+            ...state.purchaseItem,
+            id: state.shoppingCart.length + 1,
+            size_id: action.payload.data.idSize,
+            price: state.purchaseItem.price * action.payload.data.baseIndex,
+          },
         ],
         purchaseItem: {
-          id: 0,
           product_id: 0,
           type_id: 0,
-          size_id: 0,
           price: 0,
         },
       };
@@ -78,15 +78,6 @@ export default function purchase(state = INITIAL_STATE, action) {
           ...state.purchaseItem,
           type_id: action.payload.data.idType,
           price: action.payload.data.baseValue,
-        },
-      };
-    case Types.REQUEST_SELECT_SIZE:
-      return {
-        ...state,
-        purchaseItem: {
-          ...state.purchaseItem,
-          size_id: action.payload.idSize,
-          price: state.purchaseItem.price * action.payload.data.baseIndex,
         },
       };
     case Types.SUCCESS_HISTORY:
@@ -129,9 +120,9 @@ export const Creators = {
     type: Types.REQUEST_SEND_PURCHASE,
     payload: { purchase },
   }),
-  requestAddItem: newItem => ({
+  requestAddItem: data => ({
     type: Types.REQUEST_ADD_ITEM,
-    payload: { newItem },
+    payload: { data },
   }),
   requestRemoveItem: idItem => ({
     type: Types.REQUEST_REMOVE_ITEM,
@@ -143,10 +134,6 @@ export const Creators = {
   }),
   requestSelectType: data => ({
     type: Types.REQUEST_SELECT_TYPE,
-    payload: { data },
-  }),
-  requestSelectSize: data => ({
-    type: Types.REQUEST_SELECT_SIZE,
     payload: { data },
   }),
   successAddress: address => ({

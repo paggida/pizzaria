@@ -1,9 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {
- Image, StatusBar, FlatList, View 
-} from 'react-native';
+import { Image, StatusBar, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import { Creators as ProductsActions } from '~/store/ducks/products';
 import styles from './styles';
@@ -32,7 +30,7 @@ class Types extends Component {
   }
 
   createRows = (data, columns) => {
-    const rows = Math.floor(data.length / columns); // 3
+    const rows = Math.floor(data.length / columns);
     let lastRowElements = data.length - rows * columns;
 
     while (lastRowElements !== 0) {
@@ -48,16 +46,15 @@ class Types extends Component {
 
   render() {
     const { requestTypes, types, loading } = this.props;
-    const columns = 2;
     return (
       <Fragment>
         <StatusBar backgroundColor={colors.black} barStyle={colors.barStyle} />
         <Image style={styles.background} source={HeaderBackgroundImg} />
         <HeaderBack title="Selecione um tipo" backPage="Products" />
         <FlatList
-          numColumns={columns}
+          numColumns={2}
           columnWrapperStyle={styles.columnWrapper}
-          data={this.createRows(types, columns)}
+          data={this.createRows(types, 2)}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => <Type item={item} targetPage="Sizes" />}
           onRefresh={requestTypes}
