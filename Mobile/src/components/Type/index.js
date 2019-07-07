@@ -26,7 +26,12 @@ const Type = ({
     <TouchableOpacity
       style={[styles.container, styles.show]}
       onPress={() => {
-        requestSelectType({ idType: id, baseValue });
+        requestSelectType({
+          idType: id,
+          description,
+          file: url,
+          baseValue
+        });
         navigation.navigate(targetPage);
       }}
     >

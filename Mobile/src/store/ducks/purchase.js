@@ -23,12 +23,15 @@ const INITIAL_STATE = {
   history: [],
   shoppingCart: [],
   purchaseItem: {
-    product_id: 0,
+    idProduct: 0,
     type_id: 0,
+    typeDescription: '',
+    typeFile: '',
     price: 0,
   },
   error: null,
 };
+
 export default function purchase(state = INITIAL_STATE, action) {
   switch (action.type) {
     case Types.REQUEST_HISTORY:
@@ -36,6 +39,7 @@ export default function purchase(state = INITIAL_STATE, action) {
     case Types.REQUEST_SEND_PURCHASE:
       return { ...state, loading: true };
     case Types.REQUEST_ADD_ITEM:
+      // price = state.purchaseItem.price * action.payload.data.baseIndex;
       return {
         ...state,
         shoppingCart: [
@@ -44,12 +48,17 @@ export default function purchase(state = INITIAL_STATE, action) {
             ...state.purchaseItem,
             id: state.shoppingCart.length + 1,
             size_id: action.payload.data.idSize,
-            price: state.purchaseItem.price * action.payload.data.baseIndex,
+            sizeDescription: action.payload.data.description,
+            price: (
+              state.purchaseItem.price * action.payload.data.baseIndex
+            ).toFixed(2),
           },
         ],
         purchaseItem: {
-          product_id: 0,
+          idProduct: 0,
           type_id: 0,
+          typeDescription: '',
+          typeFile: '',
           price: 0,
         },
       };
@@ -65,9 +74,10 @@ export default function purchase(state = INITIAL_STATE, action) {
         ...state,
         purchaseItem: {
           id: 0,
-          product_id: action.payload.idProduct,
+          idProduct: action.payload.idProduct,
           type_id: 0,
-          size_id: 0,
+          typeDescription: '',
+          typeFile: '',
           price: 0,
         },
       };
@@ -77,6 +87,8 @@ export default function purchase(state = INITIAL_STATE, action) {
         purchaseItem: {
           ...state.purchaseItem,
           type_id: action.payload.data.idType,
+          typeDescription: action.payload.data.description,
+          typeFile: action.payload.data.file,
           price: action.payload.data.baseValue,
         },
       };

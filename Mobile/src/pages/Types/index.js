@@ -17,16 +17,16 @@ class Types extends Component {
     types: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     loading: PropTypes.bool.isRequired,
     purchaseItem: PropTypes.shape({
-      product_id: PropTypes.number,
+      idProduct: PropTypes.number,
     }).isRequired,
   };
 
   componentDidMount() {
     const {
       requestTypes,
-      purchaseItem: { product_id: id },
+      purchaseItem: { idProduct },
     } = this.props;
-    requestTypes(id);
+    requestTypes(idProduct);
   }
 
   createRows = (data, columns) => {

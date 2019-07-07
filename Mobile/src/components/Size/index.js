@@ -27,7 +27,7 @@ const Size = ({
     <TouchableOpacity
       style={[styles.container, styles.show]}
       onPress={() => {
-        requestAddItem({ idSize: id, baseIndex });
+        requestAddItem({ idSize: id, description, baseIndex });
         navigation.navigate(targetPage);
       }}
     >

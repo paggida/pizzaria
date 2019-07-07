@@ -17,7 +17,7 @@ class Sizes extends Component {
     sizes: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     loading: PropTypes.bool.isRequired,
     purchaseItem: PropTypes.shape({
-      product_id: PropTypes.number,
+      idProduct: PropTypes.number,
       type_id: PropTypes.number,
     }).isRequired,
   };
@@ -25,7 +25,7 @@ class Sizes extends Component {
   componentDidMount() {
     const {
       requestSizes,
-      purchaseItem: { product_id: idProduct, type_id: idType },
+      purchaseItem: { idProduct, type_id: idType },
     } = this.props;
     requestSizes({ idProduct, idType });
   }
