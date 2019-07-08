@@ -5,7 +5,7 @@ import Icons from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
 import styles from './styles';
 
-const FooterActions = ({ navigation }) => (
+const FooterActions = ({ navigation, sumPrice }) => (
   <View style={styles.container}>
     <TouchableOpacity
       style={styles.cartPlus}
@@ -18,7 +18,7 @@ const FooterActions = ({ navigation }) => (
     <TouchableOpacity
       style={styles.button}
       onPress={() => {
-        navigation.navigate('Purchase');
+        navigation.navigate('Purchase', { sumPrice });
       }}
     >
       <Text style={[styles.text, styles.bold]}>REALIZAR PEDIDO</Text>
@@ -32,6 +32,7 @@ const FooterActions = ({ navigation }) => (
 );
 
 FooterActions.propTypes = {
+  sumPrice: PropTypes.string.isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
   }).isRequired,

@@ -1,11 +1,10 @@
 import React, { Fragment } from 'react';
-import {
- Text, Image, StatusBar, TouchableOpacity 
-} from 'react-native';
+import { Image, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import { colors } from '~/styles';
 import HeaderBack from '~/components/HeaderBack';
+import FormPurchase from '~/components/FormPurchase';
 
 const HeaderBackgroundImg = require('~/assets/img/headerBackground.png');
 
@@ -16,21 +15,15 @@ const Purchase = ({ navigation }) => (
     <HeaderBack
       title="Realizar pedido"
       backPage="ShoppingCart"
-      price="R$55,00"
+      price={`R$${navigation.getParam('sumPrice', '0,00')}`}
     />
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('Products');
-      }}
-    >
-      <Text>{'FINALIZAR >'}</Text>
-    </TouchableOpacity>
+    <FormPurchase />
   </Fragment>
 );
 
 Purchase.propTypes = {
   navigation: PropTypes.shape({
-    navigate: PropTypes.func,
+    getParam: PropTypes.func,
   }).isRequired,
 };
 

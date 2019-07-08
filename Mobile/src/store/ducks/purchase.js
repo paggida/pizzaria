@@ -39,7 +39,6 @@ export default function purchase(state = INITIAL_STATE, action) {
     case Types.REQUEST_SEND_PURCHASE:
       return { ...state, loading: true };
     case Types.REQUEST_ADD_ITEM:
-      // price = state.purchaseItem.price * action.payload.data.baseIndex;
       return {
         ...state,
         shoppingCart: [

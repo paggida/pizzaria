@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   buttonTextDisabled: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: colors.light,
+    color: colors.lighter,
   },
 });
 

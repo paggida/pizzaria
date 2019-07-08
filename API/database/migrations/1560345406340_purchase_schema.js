@@ -14,7 +14,7 @@ class PurchaseSchema extends Schema {
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
       table.boolean('delivered').defaultTo(false)
-      table.string('description', 250).notNullable()
+      table.string('description', 250)
       table.float('fullValue', 2).notNullable()
       table.string('zipCode', 9).notNullable()
       table.string('street', 200).notNullable()

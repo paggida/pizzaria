@@ -8,7 +8,7 @@ class Purchase {
   get rules () {
     return {
       delivered: 'boolean',
-      description: 'required|string',
+      description: 'string',
       fullValue: 'required|number',
       zipCode: 'required|string',
       street: 'required|string',

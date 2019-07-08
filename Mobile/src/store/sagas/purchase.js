@@ -1,6 +1,7 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '../../services/api';
+import apiZipCode from '../../services/apiZipCode';
 import { Creators as PurchaseActions } from '../ducks/purchase';
 
 export function* requestHistory({ payload: { idUser } }) {
@@ -18,37 +19,45 @@ export function* requestHistory({ payload: { idUser } }) {
     );
   }
 }
-export function* requestAddress() {
-  /* try {
-    const tkn = yield AsyncStorage.getItem('@Storage_tkn');
-    const authorization = tkn ? { headers: { Authorization: `bearer ${tkn}` } } : {};
-
-    const { data: user } = yield call(api.post, '/users', newUser, authorization);
-    yield put(SignActions.successSignIn(user));
+export function* requestAddress({ payload: { cep } }) {
+  try {
+    const {
+      data: { bairro, logradouro },
+    } = yield call(apiZipCode.get, cep);
+    yield put(
+      PurchaseActions.successAddress({ district: bairro, street: logradouro }),
+    );
   } catch (err) {
-    // 401 - Usuário ou token existente
-    // 400 - Campos em formato inválido
-    if (err.message.indexOf('code 401') !== -1 || err.message.indexOf('code 400') !== -1) {
-      yield put(SignActions.failureSignIn('Dados incorretos!'));
-    } else {
-      yield put(SignActions.failureSignIn('Erro no acesso da API!'));
-    }
-  } */
+    yield put(
+      PurchaseActions.failureRequest('Ops... Infelizmente tivemos um problema!'),
+    );
+  }
 }
-export function* requestSendPurchase() {
-  /* try {
+export function* requestSendPurchase({ payload: { purchase } }) {
+  try {
     const tkn = yield AsyncStorage.getItem('@Storage_tkn');
-    const authorization = tkn ? { headers: { Authorization: `bearer ${tkn}` } } : {};
+    const authorization = tkn
+      ? { headers: { Authorization: `bearer ${tkn}` } }
+      : {};
 
-    const { data: user } = yield call(api.post, '/users', newUser, authorization);
-    yield put(SignActions.successSignIn(user));
+    const shoppingCart = yield select(state => state.purchase.shoppingCart);
+    const newPurchase = {
+      ...purchase,
+      fullValue: Number(purchase.fullValue),
+      number: Number(purchase.number),
+      purchaseItems: shoppingCart.map(item => ({
+        type_id: item.type_id,
+        size_id: item.size_id,
+        price: Number(item.price),
+      })),
+    };
+
+    console.tron.log(newPurchase);
+    yield call(api.post, '/purchases', newPurchase, authorization);
+    yield put(PurchaseActions.successPurchase());
   } catch (err) {
-    // 401 - Usuário ou token existente
-    // 400 - Campos em formato inválido
-    if (err.message.indexOf('code 401') !== -1 || err.message.indexOf('code 400') !== -1) {
-      yield put(SignActions.failureSignIn('Dados incorretos!'));
-    } else {
-      yield put(SignActions.failureSignIn('Erro no acesso da API!'));
-    }
-  } */
+    yield put(
+      PurchaseActions.failureRequest('Ops... Infelizmente tivemos um problema!'),
+    );
+  }
 }

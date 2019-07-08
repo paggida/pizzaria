@@ -3,6 +3,7 @@ export default {
 
   transparent: 'transparent',
   white: '#FFF',
+  lighter: '#f2f2f2',
   light: '#cccccc',
   regular: '#999',
   darker: '#8c8c8c',

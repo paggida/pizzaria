@@ -23,7 +23,7 @@ const ShoppingCart = ({ shoppingCart, sumPrice }) => (
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => <ItemPurchase item={item} />}
         />
-        <FooterActions />
+        <FooterActions sumPrice={sumPrice} />
       </Fragment>
     ) : (
       <MistakeBox message="Carrinho vazio" />
